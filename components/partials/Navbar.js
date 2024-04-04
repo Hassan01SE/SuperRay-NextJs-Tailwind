@@ -16,7 +16,7 @@ export const Navbar = () => {
     const [nav, setNav] = useState(false);
     const [islogged, setlogin] = useState(true);
 
-    const [isDarkMode, setIsDarkMode] = useState(false);
+    const [isDarkMode, setIsDarkMode] = useState(true);
 
     // Function to handle switch toggle
     const handleSwitchToggle = () => {
@@ -25,8 +25,12 @@ export const Navbar = () => {
 
     // Effect to update HTML class name based on dark mode state
     useEffect(() => {
-
-        document.documentElement.classList.toggle('dark');
+        if (isDarkMode) {
+            document.documentElement.classList.add('dark');
+        }
+        else {
+            document.documentElement.classList.remove('dark');
+        }
 
     }, [isDarkMode]);
 

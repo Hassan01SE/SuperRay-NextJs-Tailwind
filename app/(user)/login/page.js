@@ -1,8 +1,6 @@
 const Login = () => {
     return (
-        <div>
-            Login
-        </div>
+        <div className="w-full py-20 min-h-screen">Login</div>
     );
 }
 

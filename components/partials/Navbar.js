@@ -285,7 +285,7 @@ export const Navbar = () => {
             <Switch
                 className="hidden min-[1200px]:flex"
                 defaultSelected={true}
-                size="md"
+                size="lg"
                 color="primary"
                 startContent={<MoonIcon />}
                 endContent={<SunIcon />}

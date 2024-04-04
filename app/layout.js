@@ -23,7 +23,7 @@ export default function RootLayout({ children }) {
       <body className=" flex min-h-screen flex-col  justify-between bg-slate-100 dark:bg-gradient-to-b dark:from-blue-900 dark:to-blue-500" >
         <Providers>
           <Navbar />
-          <main className="flex mt-2 flex-grow">
+          <main className="flex flex-grow">
             {children}
 
           </main>

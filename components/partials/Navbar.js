@@ -6,12 +6,29 @@ import Image from "next/image";
 import Logo from '../../public/logo.png'
 import avatoricon from '../../public/profileicon.png'
 import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Avatar, User } from "@nextui-org/react";
-
+import { Switch } from "@nextui-org/react";
+import { MoonIcon } from "../icons/MoonIcon";
+import { SunIcon } from "../icons/SunIcon";
 
 
 export const Navbar = () => {
 
     const [nav, setNav] = useState(false);
+    const [islogged, setlogin] = useState(true);
+
+    const [isDarkMode, setIsDarkMode] = useState(false);
+
+    // Function to handle switch toggle
+    const handleSwitchToggle = () => {
+        setIsDarkMode(!isDarkMode);
+    };
+
+    // Effect to update HTML class name based on dark mode state
+    useEffect(() => {
+
+        document.documentElement.classList.toggle('dark');
+
+    }, [isDarkMode]);
 
     // Function to hide nav on resize
     const handleResize = () => {
@@ -46,13 +63,13 @@ export const Navbar = () => {
             name: "Generate X-Ray Report",
             link: "upload"
         },
-        {
+        /* {
             id: 4,
             name: "Past Reports",
             link: 'reports'
-        },
+        }, */
         {
-            id: 5,
+            id: 4,
             name: "About",
             link: 'about'
         },
@@ -77,6 +94,19 @@ export const Navbar = () => {
 
 
     ];
+
+    const unloggedLink = [
+        {
+            id: 1,
+            name: "Sign In",
+            link: "login"
+        },
+        /*  {
+             id: 2,
+             name: "Sign Up",
+             link: "register"
+         }, */
+    ]
 
     const UnauthenticatedProfileLinks = [
 
@@ -143,11 +173,11 @@ export const Navbar = () => {
             name: "Generate X-Ray Report",
             link: "upload"
         },
-        {
+        /* {
             id: 4,
             name: "Past Reports",
             link: 'reports'
-        },
+        }, */
         {
             id: 5,
             name: "About",
@@ -190,36 +220,38 @@ export const Navbar = () => {
 
             </ul>
 
-            <div id="profile" className="min-[1200px]:mr-4 min-[1200px]:flex hidden">
 
+            <div id="profile" className=" min-[1200px]:flex hidden">
 
-                <Dropdown placement="bottom-start">
-                    <DropdownTrigger>
-                        <User
-                            as="button"
-                            avatarProps={{
-                                isBordered: true,
-                                src: "https://avatars.githubusercontent.com/u/64270021?v=4",
-                                color: 'primary',
-                                showFallback: 'https://images.unsplash.com/broken',
-                            }}
-                            className="transition-transform"
-                            description={(
-                                <h2 className="text-slate-200">@chullo</h2>
-                            )}
-                            name="Dr. Chul"
+                {islogged &&
+                    <Dropdown placement="bottom-start">
+                        <DropdownTrigger>
+                            <User
+                                as="button"
+                                avatarProps={{
+                                    isBordered: true,
+                                    src: "https://avatars.githubusercontent.com/u/64270021?v=4",
+                                    color: 'primary',
+                                    showFallback: 'https://images.unsplash.com/broken',
+                                }}
+                                className="transition-transform"
+                                description={(
+                                    <h2 className="text-slate-200">@chullo</h2>
+                                )}
+                                name="Dr. Chul"
 
-                        />
-                    </DropdownTrigger>
-                    <DropdownMenu aria-label="User Actions" variant="bordered">
-                        <DropdownItem key="profile" className="h-14 gap-2">
-                            <p className="font-bold text-white">Signed in as</p>
-                            <p className="font-bold text-white">@chullo</p>
-                        </DropdownItem>
-                        <DropdownItem key="settings">
-                            My Profile
-                        </DropdownItem>
-                        {/*  <DropdownItem key="team_settings">Team Settings</DropdownItem>
+                            />
+                        </DropdownTrigger>
+                        <DropdownMenu aria-label="User Actions" variant="bordered">
+                            <DropdownItem key="profile" className="h-14 gap-2">
+                                <p className="font-bold text-white">Signed in as</p>
+                                <p className="font-bold text-white">@chullo</p>
+                            </DropdownItem>
+                            <DropdownItem key="my_profile" href="/profile">
+                                My Profile
+                            </DropdownItem>
+                            <DropdownItem key="past_reports" href="/reports">Past Reports</DropdownItem>
+                            {/*
                         <DropdownItem key="analytics">
                             Analytics
                         </DropdownItem>
@@ -229,27 +261,38 @@ export const Navbar = () => {
                             Help & Feedback
                         </DropdownItem> */}
 
-                        <DropdownItem key="logout" color="danger">
-                            Sign Out
-                        </DropdownItem>
-                    </DropdownMenu>
-                </Dropdown>
+                            <DropdownItem key="logout" color="danger">
+                                Sign Out
+                            </DropdownItem>
+                        </DropdownMenu>
+                    </Dropdown>}
 
+                {!islogged &&
+                    <ul className="hidden min-[1200px]:flex">
 
+                        {unloggedLink.map(({ id, name, link }) => (
+                            <li
+                                key={id}
+                                className="nav-links px-4 py-4 cursor-pointer capitalize text-lg font-medium text-white hover:opacity-80  hover:scale-105  hover:underline hover:decoration-solid duration-75  link-underline"
+                            >
+                                <Link href={link}>{name}</Link>
+                            </li>
+                        ))}
 
-                {/* <ul className="hidden min-[1200px]:flex">
-
-                    {profileLinks.map(({ id, name, link }) => (
-                        <li
-                            key={id}
-                            className="nav-links px-4 py-4 cursor-pointer capitalize text-lg font-medium text-white hover:opacity-80  hover:scale-105  hover:underline hover:decoration-solid duration-75  link-underline"
-                        >
-                            <Link href={link}>{name}</Link>
-                        </li>
-                    ))}
-
-                </ul> */}
+                    </ul>}
             </div>
+
+            <Switch
+                className="hidden min-[1200px]:flex"
+                defaultSelected={true}
+                size="md"
+                color="primary"
+                startContent={<MoonIcon />}
+                endContent={<SunIcon />}
+                onChange={handleSwitchToggle}
+            >
+
+            </Switch>
 
             <div
                 onClick={() => setNav(!nav)}
@@ -260,7 +303,18 @@ export const Navbar = () => {
 
             {nav && (
                 <ul className="flex flex-col justify-center items-center text-center absolute top-0 left-0 w-full h-screen bg-gradient-to-b from-blue-800 to-blue-500 text-white">
-                    {mobileAuthenticatedLinks.map(({ id, name, link }) => (
+                    {islogged && mobileAuthenticatedLinks.map(({ id, name, link }) => (
+                        <li
+                            key={id}
+                            className="px-4 cursor-pointer capitalize py-4 text-3xl hover:underline hover:opacity-80" //it was text-4xl before and py 6
+                        >
+                            <Link onClick={() => setNav(!nav)} href={link}>
+                                {name}
+                            </Link>
+                        </li>
+                    ))}
+
+                    {!islogged && mobileLinks.map(({ id, name, link }) => (
                         <li
                             key={id}
                             className="px-4 cursor-pointer capitalize py-4 text-3xl hover:underline hover:opacity-80" //it was text-4xl before and py 6

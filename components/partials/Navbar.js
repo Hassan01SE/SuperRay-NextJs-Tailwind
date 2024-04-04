@@ -221,10 +221,10 @@ export const Navbar = () => {
             </ul>
 
 
-            <div id="profile" className=" min-[1200px]:flex hidden">
+            <div id="profile" className=" min-[1200px]:flex hidden dark">
 
                 {islogged &&
-                    <Dropdown placement="bottom-start">
+                    <Dropdown placement="bottom-start" className="dark">
                         <DropdownTrigger>
                             <User
                                 as="button"
@@ -283,7 +283,7 @@ export const Navbar = () => {
             </div>
 
             <Switch
-                className="hidden min-[1200px]:flex"
+                className="hidden min-[1200px]:flex dark"
                 defaultSelected={true}
                 size="lg"
                 color="primary"

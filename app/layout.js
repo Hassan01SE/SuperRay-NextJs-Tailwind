@@ -20,7 +20,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html className='scroll-smooth' class={roboto.className} lang="en">
-      <body className=" flex min-h-screen flex-col  justify-between bg-slate-100 dark:bg-gradient-to-b dark:from-blue-900 dark:to-blue-500" >
+      <body className=" flex min-h-screen flex-col  justify-between bg-white bg-gradient-to-b from-white to-white  dark:bg-gradient-to-b dark:from-blue-900 dark:to-blue-500" >
         <Providers>
           <Navbar />
           <main className="flex flex-grow">

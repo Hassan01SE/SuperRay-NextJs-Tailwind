@@ -136,7 +136,7 @@ const LoginForm = () => {
 
             <div className="w-full flex flex-row items-center justify-between">
                 <Divider className="w-1/5 md:w-1/3" />
-                <p className="ml-0.25 mr-0.25 text-sm sm:text-md text-center">Dont have an account? <span className="font-bold"><Link href='/register'>Sign up</Link></span></p>
+                <p className="ml-0.25 mr-0.25 text-sm sm:text-md text-center">Don&apos;t have an account? <span className="font-bold"><Link href='/register'>Sign up</Link></span></p>
                 <Divider className="w-1/5 md:w-1/3" />
             </div>
         </form>

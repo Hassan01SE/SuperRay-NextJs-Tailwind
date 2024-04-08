@@ -1,14 +1,16 @@
 
 import "./globals.css";
+import SessionWrapper from "./components/SessionWrapper";
 import { Providers } from "./providers";
-import { Navbar } from "@/components/partials/Navbar";
-import { Footer } from "@/components/partials/Footer";
-import { Roboto } from 'next/font/google'
+import { Navbar } from "./components/partials/Navbar";
+import { Footer } from "./components/partials/Footer";
+//import { Roboto } from 'next/font/google';
 
-const roboto = Roboto({
+
+/* const roboto = Roboto({
   weight: '400',
   subsets: ['latin'],
-})
+}) */
 
 
 
@@ -19,18 +21,22 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html className='scroll-smooth' class={roboto.className} lang="en">
+
+    <html className='dark scroll-smooth' lang="en">
       <body className=" flex min-h-screen flex-col  justify-between bg-white bg-gradient-to-b from-white to-white  dark:bg-gradient-to-b dark:from-blue-900 dark:to-blue-500" >
-        <Providers>
-          <Navbar />
-          <main className="flex flex-grow">
-            {children}
+        <SessionWrapper>
+          <Providers>
+            <Navbar />
+            <main className="flex flex-grow">
+              {children}
 
-          </main>
+            </main>
 
-          <Footer />
-        </Providers>
+            <Footer />
+          </Providers>
+        </SessionWrapper>
       </body>
     </html >
+
   );
 }

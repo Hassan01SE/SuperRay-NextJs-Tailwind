@@ -1,22 +1,47 @@
 'use client'
+import { jwtDecode } from "jwt-decode";
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import Image from "next/image";
-import Logo from '../../public/logo.png'
-import avatoricon from '../../public/profileicon.png'
+import Logo from '../../../public/logo.png'
+import avatoricon from '../../../public/profileicon.png'
 import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Avatar, User } from "@nextui-org/react";
 import { Switch } from "@nextui-org/react";
 import { MoonIcon } from "../icons/MoonIcon";
 import { SunIcon } from "../icons/SunIcon";
+import { signIn, signOut, useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 
 export const Navbar = () => {
 
+    const router = useRouter();
+    const { data: session, status } = useSession();
+
+    const [username, setUser] = useState();
+    const [name, setName] = useState();
+    const [email, setEmail] = useState();
+
+
     const [nav, setNav] = useState(false);
-    const [islogged, setlogin] = useState(true);
+    const [islogged, setlogin] = useState();
 
     const [isDarkMode, setIsDarkMode] = useState(true);
+
+    useEffect(() => {
+        if (session) {
+            let token = session.user.access;
+            const { username, first_name, email } = jwtDecode(token);
+            setName(first_name);
+            setUser(username);
+            setEmail(email);
+            setlogin(true);
+        }
+        else {
+            setlogin(false);
+        }
+    }, [session])
 
     // Function to handle switch toggle
     const handleSwitchToggle = () => {
@@ -60,12 +85,12 @@ export const Navbar = () => {
         {
             id: 2,
             name: "Fracture Detection",
-            link: "upload"
+            link: "/upload"
         },
         {
             id: 3,
             name: "Generate X-Ray Report",
-            link: "upload"
+            link: "/upload"
         },
         /* {
             id: 4,
@@ -75,7 +100,7 @@ export const Navbar = () => {
         {
             id: 4,
             name: "About",
-            link: 'about'
+            link: '/about'
         },
         /* {
             id: 5,
@@ -88,12 +113,12 @@ export const Navbar = () => {
         {
             id: 1,
             name: "Profile",
-            link: "profile",
+            link: "/profile",
         },
         {
             id: 2,
             name: "Sign Out",
-            link: "logout"
+            link: "/logout"
         },
 
 
@@ -103,7 +128,7 @@ export const Navbar = () => {
         {
             id: 1,
             name: "Sign In",
-            link: "login"
+            link: "/login"
         },
         /*  {
              id: 2,
@@ -117,7 +142,7 @@ export const Navbar = () => {
         {
             id: 1,
             name: "Sign In",
-            link: "login"
+            link: "/login"
         },
 
 
@@ -132,27 +157,27 @@ export const Navbar = () => {
         {
             id: 2,
             name: "Fracture Detection",
-            link: "upload"
+            link: "/upload"
         },
         {
             id: 3,
             name: "Generate X-Ray Report",
-            link: "upload"
+            link: "/upload"
         },
         {
             id: 4,
             name: "Past Reports",
-            link: 'reports'
+            link: '/reports'
         },
         {
             id: 5,
             name: "About",
-            link: 'about'
+            link: '/about'
         },
         {
             id: 6,
             name: "Profile",
-            link: 'profile'
+            link: '/profile'
         },
         {
             id: 7,
@@ -170,12 +195,12 @@ export const Navbar = () => {
         {
             id: 2,
             name: "Fracture Detection",
-            link: "upload"
+            link: "/upload"
         },
         {
             id: 3,
             name: "Generate X-Ray Report",
-            link: "upload"
+            link: "/upload"
         },
         /* {
             id: 4,
@@ -185,13 +210,13 @@ export const Navbar = () => {
         {
             id: 5,
             name: "About",
-            link: 'about'
+            link: '/about'
         },
 
         {
             id: 6,
             name: "Sign In",
-            link: 'login'
+            link: '/login'
         },
     ];
 
@@ -240,16 +265,16 @@ export const Navbar = () => {
                                 }}
                                 className="transition-transform"
                                 description={(
-                                    <h2 className="text-slate-200">@chullo</h2>
+                                    <h2 className="text-slate-200">@{username}</h2>
                                 )}
-                                name="Dr. Chul"
+                                name={name}
 
                             />
                         </DropdownTrigger>
                         <DropdownMenu aria-label="User Actions" variant="bordered">
                             <DropdownItem key="profile" className="h-14 gap-2">
                                 <p className="font-bold text-white">Signed in as</p>
-                                <p className="font-bold text-white">@chullo</p>
+                                <p className="font-bold text-white">{email}</p>
                             </DropdownItem>
                             <DropdownItem key="my_profile" href="/profile">
                                 My Profile
@@ -265,7 +290,7 @@ export const Navbar = () => {
                             Help & Feedback
                         </DropdownItem> */}
 
-                            <DropdownItem key="logout" color="danger">
+                            <DropdownItem key="logout" color="danger" onClick={() => signOut()}>
                                 Sign Out
                             </DropdownItem>
                         </DropdownMenu>
@@ -282,7 +307,7 @@ export const Navbar = () => {
                                 <Link href={link}>{name}</Link>
                             </li>
                         ))}
-
+                        {/* <button onClick={() => signIn()}>Sign in</button> */}
                     </ul>}
             </div>
 

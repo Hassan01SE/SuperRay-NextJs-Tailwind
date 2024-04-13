@@ -32,6 +32,7 @@ export const Navbar = () => {
     useEffect(() => {
         if (session) {
             let token = session.user.access;
+            console.log(token);
             const { username, first_name, email } = jwtDecode(token);
             setName(first_name);
             setUser(username);

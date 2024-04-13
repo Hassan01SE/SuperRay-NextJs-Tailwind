@@ -40,7 +40,7 @@ const LoginForm = () => {
             router.push("/"); // Redirect to homepage or any desired page
         } else {
             // Handle sign-in error
-            alert('error');
+            alert(result.error);
             setUsernameInValid(true);
             console.error("Sign-in error:", result.error);
         }
@@ -52,7 +52,7 @@ const LoginForm = () => {
 
 
     return (
-        <form onSubmit={handleSignIn} className="dark flex flex-col flex-grow w-3/4 items-center  justify-around flex-grow-2 sm:w-3/4 md:w-1/2">
+        <form onSubmit={handleSignIn} className="dark flex flex-col flex-grow w-3/4 h-1/2 items-center justify-around sm:w-3/4 md:w-1/2">
             {/* 
             <Input type="email" label="Email" placeholder="Enter your email"
                 isClearable

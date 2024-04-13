@@ -18,7 +18,7 @@ const handler = NextAuth({
       async authorize(credentials, req) {
         try {
           const response = await axios({
-            url: "http://127.0.0.1:8000/api/token/",
+            url: process.env.NEXTAUTH_BACKEND_URL + "token/",
             method: "post",
             data: credentials,
           });

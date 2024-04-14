@@ -17,6 +17,8 @@ const LoginForm = () => {
     const { data: session, status } = useSession();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [loginbtntext, setLoginBtnText] = useState("Sign in");
+    const [loginbtndisable, setBtnDisable] = useState(false);
 
 
     const [value, setValue] = useState();
@@ -28,6 +30,8 @@ const LoginForm = () => {
 
     const handleSignIn = async (e) => {
         e.preventDefault();
+        setLoginBtnText('Loading ..');
+        setBtnDisable(true);
         const formData = {
             "username": username,
             "password": password,
@@ -44,6 +48,8 @@ const LoginForm = () => {
             setUsernameInValid(true);
             console.error("Sign-in error:", result.error);
         }
+        setLoginBtnText('Sign in');
+        setBtnDisable(false);
     };
 
     if (session) {
@@ -127,7 +133,8 @@ const LoginForm = () => {
 
             />
 
-            <button type="submit" className="w-full h-10 sm:h-12  bg-[#F4A261] hover:border-white hover:border-2 rounded-md sm:text-lg sm:w-full font-medium"  >Sign in</button>
+
+            <button disabled={loginbtndisable ? 'disabled' : undefined} type="submit" className="w-full h-10 sm:h-12  bg-[#F4A261] hover:border-white hover:border-2 rounded-md sm:text-lg sm:w-full font-medium"  >{loginbtntext}</button>
 
 
             {/*  <button className="w-full h-12  bg-black hover:border-white hover:border-2 rounded-md sm:text-xl sm:w-full font-medium"> {FaGooglePlusG} Sign in with Google</button> */}

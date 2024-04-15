@@ -2,15 +2,15 @@ import RegisterForm from '../../components/RegisterForm';
 
 const Register = () => {
     return (
-        <div className="w-full flex flex-col justify-start items-center min-h-screen  mt-20 p-4 ">
+        <div className="w-full flex flex-col justify-start items-center min-h-screen   mt-20 p-4 ">
 
-            <div className="hidden md:flex  md:flex-row h-[95%]  w-[95%] bg-blue-950 mx-auto my-auto rounded-md items-start justify-evenly  ">
+            <div className="hidden md:flex  md:flex-row min-h-screen md:h-[700px]   w-[95%] bg-blue-950 mx-auto my-auto rounded-md items-start justify-evenly  ">
 
                 <div className="w-1/2 h-full flex flex-col justify-start mr-2 md:pl-10">
                     <h1 className="text-3xl font-semibold mt-2 lg:text-4xl"> Sign up</h1>
                     <p className="text-md mt-2 lg:text-lg">Your Gateway to Enhanced Medical Imaging!</p>
 
-                    <div className="w-full mt-6"></div>
+                    <div className="w-full mt-4"></div>
                     <RegisterForm />
                 </div>
 

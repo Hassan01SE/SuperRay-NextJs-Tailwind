@@ -23,7 +23,7 @@ export default function RootLayout({ children }) {
   return (
 
     <html className='dark scroll-smooth' lang="en">
-      <body className=" flex min-h-screen flex-col  justify-between bg-white bg-gradient-to-b from-white to-white  dark:bg-gradient-to-b dark:from-blue-900 dark:to-blue-500" >
+      <body className=" flex min-h-screen flex-col  justify-between bg-black bg-gradient-to-b from-black to-black  dark:bg-gradient-to-b dark:from-blue-900 dark:to-blue-500" >
         <SessionWrapper>
           <Providers>
             <Navbar />

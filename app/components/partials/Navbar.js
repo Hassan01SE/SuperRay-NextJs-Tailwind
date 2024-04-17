@@ -332,7 +332,7 @@ export const Navbar = () => {
             </div>
 
             {nav && (
-                <ul className="flex flex-col justify-center items-center text-center absolute top-0 left-0 w-full h-screen bg-gradient-to-b from-blue-800 to-blue-500 text-white">
+                <ul className="flex flex-col justify-center items-center text-center absolute top-0 left-0 w-full h-screen bg-black dark:bg-gradient-to-b dark:from-blue-800 dark:to-blue-500 text-white">
                     {islogged && mobileAuthenticatedLinks.map(({ id, name, link }) => (
                         <li
                             key={id}
@@ -354,6 +354,20 @@ export const Navbar = () => {
                             </Link>
                         </li>
                     ))}
+
+                    <li className=" mt-10 mr-1 self-end">
+                        <Switch
+                            className=" min-[1200px]:flex dark"
+                            defaultSelected={true}
+                            size="md"
+                            color="primary"
+                            startContent={<MoonIcon />}
+                            endContent={<SunIcon />}
+                            onChange={handleSwitchToggle}
+                        >
+
+                        </Switch>
+                    </li>
 
                 </ul>
             )}

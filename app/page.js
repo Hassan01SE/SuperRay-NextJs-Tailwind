@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 export default function Home() {
   return (
-    <div className="min-h-screen  w-full ">
+    <div className="min-h-screen w-full ">
 
       <div id="banner" className=" flex flex-col-reverse items-center justify-evenly w-full mt-20 h-[700px] sm:p-12 p-4 bg-black border-b-2 border-b-white dark:border-none dark:bg-blue-900 sm:flex-row sm:items-start sm:justify-normal sm:h-unit-8xl lg:h-unit-9xl">
 

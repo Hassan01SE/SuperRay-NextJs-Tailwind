@@ -16,6 +16,8 @@ import { useRouter } from "next/navigation";
 
 export const Navbar = () => {
 
+
+
     const router = useRouter();
     const { data: session, status } = useSession();
 
@@ -355,7 +357,7 @@ export const Navbar = () => {
                         </li>
                     ))}
 
-                    <li className=" mt-10 mr-1 self-end">
+                    <li className=" mt-10 mr-2 self-end">
                         <Switch
                             className=" min-[1200px]:flex dark"
                             defaultSelected={true}
@@ -365,7 +367,7 @@ export const Navbar = () => {
                             endContent={<SunIcon />}
                             onChange={handleSwitchToggle}
                         >
-
+                            {/* Dark mode {isDarkMode ? "off" : "on"} */}
                         </Switch>
                     </li>
 

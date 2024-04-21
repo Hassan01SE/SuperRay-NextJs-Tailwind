@@ -22,6 +22,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
 
+
     <html className='dark transition-transform scroll-smooth' lang="en">
       <body className=" flex min-h-screen flex-col  justify-between bg-[#0C0C0C] bg-gradient-to-b from-[#0C0C0C] to-[#0C0C0C]  dark:bg-gradient-to-b dark:from-blue-900 dark:to-blue-500" >
         <SessionWrapper>
@@ -37,6 +38,7 @@ export default function RootLayout({ children }) {
         </SessionWrapper>
       </body>
     </html >
+
 
   );
 }

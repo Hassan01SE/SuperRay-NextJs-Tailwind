@@ -39,7 +39,7 @@ const Register = () => {
             </div>
 
 
-            <div id='mobileversion' className='flex flex-col justify-start items-center mt-4 w-[90%] h-[700px] outline-slate-200 outline-1 outline-double  bg-[#070F2B] dark:outline-none  dark:bg-blue-950 rounded-md   sm:hidden'>
+            <div id='mobileversion' className='flex flex-col justify-start items-center mt-4 w-full h-[700px] outline-slate-200 outline-1 outline-double  bg-[#070F2B] dark:outline-none  dark:bg-blue-950 rounded-md   sm:hidden'>
 
                 <div className='w-full flex flex-col justify-start items-center'>
 

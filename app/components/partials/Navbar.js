@@ -224,7 +224,7 @@ export const Navbar = () => {
     ];
 
     return (
-        <div className="flex justify-between items-center w-full h-20 z-50 sm:px-4 text-white dark:bg-[#0C56BC] bg-[#040D12] fixed nav">
+        <div className="flex justify-between items-center w-full h-20 z-50 sm:px-4 text-white dark:bg-[#0C56BC] bg-[#040D12] fixed nav shadow-md">
             <div style={{ minWidth: '300px' }}>
                 {/* <h1 className="text-5xl font-signature ml-2"><a className="link-underline hover:transition ease-in-out delay-150 hover:underline hover:decoration-solid" href="">Logo</a></h1> */}
                 <h1 className="text-5xl font-signature sm:ml-1 mt-3">

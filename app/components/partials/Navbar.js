@@ -262,7 +262,7 @@ export const Navbar = () => {
                                 as="button"
                                 avatarProps={{
                                     isBordered: true,
-                                    src: "https://avatars.githubusercontent.com/u/64270021?v=4",
+                                    src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaj0ucKVpTNbey2YUj2f0V_MDQ1G6jBiwt2w&usqp=CAU",
                                     color: 'primary',
                                     showFallback: 'https://images.unsplash.com/broken',
                                 }}

@@ -14,7 +14,12 @@ export default function Home() {
           <p className="max-w-md text-center text-md mt-4 text-slate-300 font-semibold sm:text-start sm:w-1/2 sm:mt-6 sm:text-md lg:text-lg">GAN Powered Platform For Super Resolution
             Assessment & Diagnostic For Medical Imaging.</p>
 
-          <button type="button" class="mt-4 font-semibold bg-[#F4A261] hover:border-white hover:border-2 rounded-md w-3/4 h-12  sm:mt-6 sm:w-60 sm:h-14 md:text-xl">Try It Now</button>
+          <button type="button" class="mt-4 font-semibold bg-gradient-to-r from-[#F4A261] to-[#E76F51] hover:from-[#E76F51] hover:to-[#F4A261] hover:border-white hover:border-2 rounded-md w-3/4 h-12 sm:mt-6 sm:w-60 sm:h-14 md:text-xl focus:outline-none focus:ring-2 focus:ring-[#E76F51]">
+            <Link href='/'>
+              Try It Now
+            </Link>
+          </button>
+
         </div>
 
         <div className="w-full flex flex-col items-center sm:w-1/2">
@@ -36,7 +41,13 @@ export default function Home() {
           <p className='max-w-md  text-center text-md mt-4 text-slate-200 font-semibold sm:text-start sm:max-w-[80%] sm:mt-6 sm:text-md lg:text-lg'>
             Empower your diagnostic process with our state-of-the-art fracture detection system. Leveraging cutting-edge deep learning algorithms, <span className='text-white font-medium'>SuperRay</span> identifies fractures with unparalleled accuracy, enabling swift and effective treatment decisions.
           </p>
-          <button type="button" class="mt-4 self-center font-semibold bg-[#F4A261] hover:border-white hover:border-2 rounded-md w-3/4 h-12 sm:self-start  sm:mt-6 sm:w-60 sm:h-14 md:text-xl"><Link href='/upload'>Detect Fractures</Link></button>
+
+          <button type="button" class="mt-4 self-center font-semibold bg-gradient-to-r from-[#F4A261] to-[#E76F51] hover:from-[#E76F51] hover:to-[#F4A261] hover:border-white hover:border-2 rounded-md w-3/4 h-12 sm:self-start sm:mt-6 sm:w-60 sm:h-14 md:text-xl focus:outline-none focus:ring-2 focus:ring-[#E76F51]">
+            <Link href='/upload'>
+              Detect Fractures
+            </Link>
+          </button>
+
         </div>
 
       </section>

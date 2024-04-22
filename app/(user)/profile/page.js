@@ -3,6 +3,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useSession, status } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import Loading from "../../loading";
 
 const Profile = () => {
 
@@ -38,8 +39,8 @@ const Profile = () => {
 
 
     return (
-        <div className="mt-20 min-h-screen">
-            {status === 'loading' && <p>Loading ...</p>}
+        <div className="mt-20 min-h-screen w-full">
+            {status === 'loading' && <Loading />}
             {status === 'authenticated' && userData && (
                 <div>
                     <h1>User Profile</h1>

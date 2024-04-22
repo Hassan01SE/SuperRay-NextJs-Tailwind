@@ -10,6 +10,7 @@ import { FaGooglePlusG } from "react-icons/fa";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { signIn, useSession } from "next-auth/react";
+import { Spinner } from "@nextui-org/react";
 
 
 const LoginForm = () => {
@@ -134,7 +135,7 @@ const LoginForm = () => {
             />
 
 
-            <button disabled={loginbtndisable ? 'disabled' : undefined} type="submit" className="w-full h-10 sm:h-12  bg-[#F4A261] hover:border-white hover:border-2 rounded-md sm:text-lg sm:w-full font-medium"  >{loginbtntext}</button>
+            <button disabled={loginbtndisable ? 'disabled' : undefined} type="submit" className="w-full h-10 sm:h-12  bg-[#F4A261] hover:border-white hover:border-2 rounded-md sm:text-lg sm:w-full font-medium flex flex-row items-center justify-center"  > {loginbtndisable && <Spinner size="md" color="primary" className="mr-1" />}  {loginbtntext} </button>
 
 
             {/*  <button className="w-full h-12  bg-black hover:border-white hover:border-2 rounded-md sm:text-xl sm:w-full font-medium"> {FaGooglePlusG} Sign in with Google</button> */}

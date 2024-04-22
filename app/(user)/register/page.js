@@ -1,4 +1,5 @@
 import RegisterForm from '../../components/RegisterForm';
+import { Divider } from "@nextui-org/react";
 
 const Register = () => {
     return (
@@ -32,6 +33,24 @@ const Register = () => {
                     <p className="text-md mt-2 lg:mt-4 lg:text-lg">Your Gateway to Enhanced Medical Imaging!</p>
                 </div>
                 <div className="w-3/4 mt-6  flex flex-col justify-start items-center">
+                    <RegisterForm />
+                </div>
+
+            </div>
+
+
+            <div id='mobileversion' className='flex flex-col justify-start items-center mt-4 w-[90%] h-[700px] outline-slate-200 outline-1 outline-double  bg-[#070F2B] dark:outline-none  dark:bg-blue-950 rounded-md   sm:hidden'>
+
+                <div className='w-full flex flex-col justify-start items-center'>
+
+                    <h1 className='text-3xl mt-2 font-semibold text-center'>Sign up!</h1>
+                    <p className='mt-2 text-md mx-1 text-center text-slate-300'>Your Gateway to Enhanced Medical Imaging!</p>
+
+                </div>
+
+                <Divider className="mt-2 w-[90%]" />
+
+                <div className=' w-full mt-6 flex flex-col items-center'>
                     <RegisterForm />
                 </div>
 

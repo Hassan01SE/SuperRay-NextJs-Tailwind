@@ -185,7 +185,7 @@ export const Navbar = () => {
         {
             id: 7,
             name: "Sign Out",
-            link: 'logout'
+            link: '/',
         },
     ];
 
@@ -224,7 +224,7 @@ export const Navbar = () => {
     ];
 
     return (
-        <div className="flex justify-between items-center w-full h-20 z-50 sm:px-4 text-white dark:bg-[#0C56BC] bg-black fixed nav">
+        <div className="flex justify-between items-center w-full h-20 z-50 sm:px-4 text-white dark:bg-[#0C56BC] bg-[#040D12] fixed nav">
             <div style={{ minWidth: '300px' }}>
                 {/* <h1 className="text-5xl font-signature ml-2"><a className="link-underline hover:transition ease-in-out delay-150 hover:underline hover:decoration-solid" href="">Logo</a></h1> */}
                 <h1 className="text-5xl font-signature sm:ml-1 mt-3">
@@ -340,7 +340,7 @@ export const Navbar = () => {
                             key={id}
                             className="px-4 cursor-pointer capitalize py-4 text-3xl hover:underline hover:opacity-80" //it was text-4xl before and py 6
                         >
-                            <Link onClick={() => setNav(!nav)} href={link}>
+                            <Link onClick={() => { setNav(!nav); id === 7 && signOut() }} href={link} >
                                 {name}
                             </Link>
                         </li>

@@ -1,7 +1,7 @@
 
 import bannerimage from '../public/radiologyai.jpg'
 import Link from 'next/link'
-import Typewriter from 'typewriter-effect/dist/core';
+
 
 export default function Home() {
   return (

@@ -43,7 +43,7 @@ const Upload = () => {
 
                         <Image className=" w-[20px] sm:w-[30px]" src={fileicon} alt="upload cloud icon" />
 
-                        <p className=" w-[80%] text-xs capitalize font-semibold text-white  dark:text-blue-900 cursor-pointer sm:w-[80%] sm:text-md"> {isfiledrop ? <span className="underline font-bold">Uploaded Successfully!</span> : <span> <u className="font-bold"> Upload!</u> or Drag and Drop a medical image. <b>[PNG/JPG]</b> </span>}</p>
+                        <p className=" w-[80%] text-xs capitalize font-semibold text-white  dark:text-blue-900 cursor-pointer sm:w-[80%] sm:text-md"> {isfiledrop ? <span className="underline font-bold">Uploaded Successfully!</span> : <span> <u className="font-bold"> Upload!</u> or Drag and Drop a Medical Image. <b>[PNG/JPG]</b> </span>}</p>
 
 
 

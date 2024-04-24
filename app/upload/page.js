@@ -28,6 +28,21 @@ const Upload = () => {
         setFileDrop(false);
     }
 
+
+    const FileUploadDiv = () => {
+        return (
+            <div className=" flex items-center justify-evenly w-[250px]  md:w-[400px] h-[50px] rounded-sm outline-blue-500 outline-dashed">
+
+                <Image className=" w-[20px] sm:w-[30px]" src={fileicon} alt="upload cloud icon" />
+
+                <p className=" w-[80%] text-xs capitalize font-semibold text-white  dark:text-blue-900 cursor-pointer sm:w-[80%] sm:text-md"> {isfiledrop ? <span className="underline font-bold">Uploaded Successfully!</span> : <span> <u className="font-bold"> Upload!</u> or Drag and Drop a Medical Image. <b>[PNG/JPG]</b> </span>}</p>
+
+
+
+            </div>
+        )
+    }
+
     return (
         <div className=" min-h-screen w-full flex flex-col px-2 py-4 mt-20">
 
@@ -39,15 +54,7 @@ const Upload = () => {
 
                     <Image className=" w-[75px]  sm:w-[150px]" src={uploadicon} alt="upload cloud icon" />
 
-                    <FileUploader required={true} hoverTitle="Drop here" handleChange={handleChange} name="file" types={fileTypes} children={<div className=" flex items-center justify-evenly w-[250px]  md:w-[400px] h-[50px] rounded-sm outline-blue-500 outline-dashed">
-
-                        <Image className=" w-[20px] sm:w-[30px]" src={fileicon} alt="upload cloud icon" />
-
-                        <p className=" w-[80%] text-xs capitalize font-semibold text-white  dark:text-blue-900 cursor-pointer sm:w-[80%] sm:text-md"> {isfiledrop ? <span className="underline font-bold">Uploaded Successfully!</span> : <span> <u className="font-bold"> Upload!</u> or Drag and Drop a Medical Image. <b>[PNG/JPG]</b> </span>}</p>
-
-
-
-                    </div>} />
+                    <FileUploader required={true} hoverTitle="Drop here" handleChange={handleChange} name="file" types={fileTypes} children={<FileUploadDiv />} />
 
                     <div className="flex flex-row items-center justify-around">
                         <p className="mt-2 mr-2 capitalize text-white dark:text-slate-500">{file ? `File name: ${file.name}` : "no files uploaded yet"}</p>

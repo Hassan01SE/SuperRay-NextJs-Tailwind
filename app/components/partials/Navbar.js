@@ -10,8 +10,9 @@ import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Avatar, User } f
 import { Switch } from "@nextui-org/react";
 import { MoonIcon } from "../icons/MoonIcon";
 import { SunIcon } from "../icons/SunIcon";
-import { signIn, signOut, useSession } from "next-auth/react";
+import { signIn, signOut, useSession, status } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { Skeleton } from "@nextui-org/react";
 
 
 export const Navbar = () => {
@@ -299,7 +300,7 @@ export const Navbar = () => {
                         </DropdownMenu>
                     </Dropdown>}
 
-                {!islogged &&
+                {!islogged && status == 'unauthenticated' &&
                     <ul className="hidden min-[1200px]:flex">
 
                         {unloggedLink.map(({ id, name, link }) => (
@@ -312,6 +313,19 @@ export const Navbar = () => {
                         ))}
                         {/* <button onClick={() => signIn()}>Sign in</button> */}
                     </ul>}
+
+                {status == 'loading' &&
+                    <div className="max-w-[300px] w-full flex items-center gap-3">
+                        <div>
+                            <Skeleton className="flex rounded-full w-12 h-12" />
+                        </div>
+                        <div className="w-full flex flex-col gap-2">
+                            <Skeleton className="h-3 w-3/5 rounded-lg" />
+                            <Skeleton className="h-3 w-4/5 rounded-lg" />
+                        </div>
+                    </div>
+                }
+
             </div>
 
             <Switch

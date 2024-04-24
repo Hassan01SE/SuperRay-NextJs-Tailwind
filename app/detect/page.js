@@ -13,16 +13,16 @@ import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure
 
 const fileTypes = ["JPG", "PNG", "JPEG"];
 
-const Upload = () => {
+const Detect = () => {
 
     const [generatedImage, setGeneratedImage] = useState(null);
     const [isActive, setActive] = useState(false);
     const [file, setFile] = useState(null);
     const [isButtonDisabled, setIsButtonDisabled] = useState(true);
-    const [loaderText, setloadertext] = useState('Generating your report ...');
+    const [loaderText, setloadertext] = useState('Detecting Fractures ...');
     const [isfiledrop, setFileDrop] = useState(false);
     const [submit, setSubmit] = useState(false);
-    const [btntext, setBtnText] = useState('Generate Report');
+    const [btntext, setBtnText] = useState('Detect');
     const { isOpen, onOpen, onClose } = useDisclosure();
 
     const handleChange = (file) => {
@@ -43,12 +43,12 @@ const Upload = () => {
         formData.append('image', file);
 
         try {
-            const response = await axios.post('http://127.0.0.1:8000/api/super-resolution/', formData, {
+            const response = await axios.post('http://127.0.0.1:8000/api/detect-fractures/', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
             });
-            setloadertext('Your Report has been generated!');
+            setloadertext('Findings Completed');
             setGeneratedImage(response.data.image);
             onOpen();
             console.log(response.data); // Assuming the response is the generated image
@@ -95,18 +95,13 @@ const Upload = () => {
                 <ModalContent>
                     {(onClose) => (
                         <>
-                            <ModalHeader className="flex flex-col gap-1">XRay Report</ModalHeader>
+                            <ModalHeader className="flex flex-col gap-1">Fracture Detected</ModalHeader>
                             <Image className="mt-2 self-center mb-2 w-[300px] md:w[450px]" width={300} height={300} src={`data:image/jpeg;base64,${generatedImage}`} alt="xray img" />
                             <ModalBody>
                                 <p>
-                                    <span className="font-bold">Comparison:</span> Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe maiores fuga ullam nihil eum dolorum illum incidunt porro facere, repudiandae deserunt.
-                                </p>
-                                <p>
-                                    <span className="font-bold">Indication:</span> Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe maiores fuga ullam nihil eum dolorum illum incidunt porro facere, repudiandae deserunt.
-                                </p>
-                                <p>
                                     <span className="font-bold">Findings:</span> Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe maiores fuga ullam nihil eum dolorum illum incidunt porro facere, repudiandae deserunt.
                                 </p>
+
                             </ModalBody>
                             <ModalFooter>
                                 {/* <Button color="danger" variant="light" onPress={onClose}>
@@ -134,7 +129,7 @@ const Upload = () => {
 
             <div className="flex flex-col items-center justify-start h-full">
 
-                <h1 className="capitalize text-2xl font-semibold text-center sm:text-3xl md:text-4xl lg:text-5xl ">Upload your medical image</h1>
+                <h1 className="capitalize text-2xl font-semibold text-center sm:text-3xl md:text-4xl lg:text-5xl ">Fracture Detection by AI</h1>
 
                 <div id="uploadcontainer" className="w-[80%] mt-6 h-[300px] md:h-[350px] lg:w-[70%] lg:h-[400px] xl:w-[60%] dark:bg-white bg-[#010000] shadow-md rounded-md   outline-gray-200 outline-dotted flex flex-col items-center">
 
@@ -171,4 +166,4 @@ const Upload = () => {
     );
 }
 
-export default Upload;
+export default Detect;

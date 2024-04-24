@@ -16,7 +16,7 @@ export default function Home() {
             Assessment & Diagnostic For Medical Imaging.</p>
 
           <button type="button" className="mt-4 font-semibold bg-gradient-to-r from-[#F4A261] to-[#E76F51] hover:from-[#E76F51] hover:to-[#F4A261] hover:border-white hover:border-2 rounded-md w-3/4 h-12 sm:mt-6 sm:w-60 sm:h-14 md:text-xl focus:outline-none ">
-            <Link href='/'>
+            <Link href='/upload'>
               Try It Now
             </Link>
           </button>
@@ -44,7 +44,7 @@ export default function Home() {
           </p>
 
           <button type="button" className="mt-4 self-center font-semibold bg-gradient-to-r from-[#F4A261] to-[#E76F51] hover:from-[#E76F51] hover:to-[#F4A261] hover:border-white hover:border-2 rounded-md w-3/4 h-12 sm:self-start sm:mt-6 sm:w-60 sm:h-14 md:text-xl focus:outline-none ">
-            <Link href='/upload'>
+            <Link href='/detect'>
               Detect Fractures
             </Link>
           </button>

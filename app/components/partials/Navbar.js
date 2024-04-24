@@ -89,7 +89,7 @@ export const Navbar = () => {
         {
             id: 2,
             name: "Fracture Detection",
-            link: "/upload"
+            link: "/detect"
         },
         {
             id: 3,
@@ -161,7 +161,7 @@ export const Navbar = () => {
         {
             id: 2,
             name: "Fracture Detection",
-            link: "/upload"
+            link: "/detect"
         },
         {
             id: 3,
@@ -199,7 +199,7 @@ export const Navbar = () => {
         {
             id: 2,
             name: "Fracture Detection",
-            link: "/upload"
+            link: "/detect"
         },
         {
             id: 3,

@@ -91,13 +91,14 @@ const Detect = () => {
                 isOpen={isOpen}
                 onClose={onClose}
                 isDismissable={false} isKeyboardDismissDisabled={true}
+                className="dark"
             >
                 <ModalContent>
                     {(onClose) => (
-                        <>
-                            <ModalHeader className="flex flex-col gap-1">Fracture Detected</ModalHeader>
+                        <div className="dark:bg-black bg-[#000210 flex flex-col items-center">
+                            <ModalHeader className="flex flex-col gap-1 text-3xl">Fracture Detected</ModalHeader>
                             <Image className="mt-2 self-center mb-2 w-[300px] md:w[450px]" width={300} height={300} src={`data:image/jpeg;base64,${generatedImage}`} alt="xray img" />
-                            <ModalBody>
+                            <ModalBody className="dark">
                                 <p>
                                     <span className="font-bold">Findings:</span> Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe maiores fuga ullam nihil eum dolorum illum incidunt porro facere, repudiandae deserunt.
                                 </p>
@@ -111,7 +112,7 @@ const Detect = () => {
                                     Action
                                 </Button> */}
                             </ModalFooter>
-                        </>
+                        </div>
                     )}
                 </ModalContent>
             </Modal>
@@ -136,7 +137,7 @@ const Detect = () => {
                     <Image className=" w-[75px]  sm:w-[150px]" src={uploadicon} alt="upload cloud icon" />
 
                     <FileUploader required={true} hoverTitle="Drop here" handleChange={handleChange} name="file" types={fileTypes} >
-                        <div className=" flex items-center justify-evenly w-[250px]  md:w-[400px] h-[50px] rounded-sm outline-blue-500 outline-dashed">
+                        <div className=" max-w-full flex items-center justify-evenly w-[250px]  md:w-[400px] h-[50px] rounded-sm outline-blue-500 outline-dashed">
 
                             <Image className=" w-[20px] sm:w-[30px]" src={fileicon} alt="upload cloud icon" />
 
@@ -148,8 +149,8 @@ const Detect = () => {
 
                     </FileUploader>
 
-                    <div className="flex flex-row items-center justify-around">
-                        <p className="mt-2 mr-2 capitalize text-white dark:text-slate-500">{file ? `File name: ${file.name}` : "no files uploaded yet"}</p>
+                    <div className="flex flex-row items-center justify-around max-w-full mx-1">
+                        <p className=" max-w-[90%] overflow-x-hidden mt-2 mr-2 capitalize text-white dark:text-slate-500">{file ? `File name: ${file.name}` : "no files uploaded yet"}</p>
                         {isfiledrop && <button onClick={removeFile} >&#10060;</button>}
                     </div>
 

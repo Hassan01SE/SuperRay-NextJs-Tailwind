@@ -10,7 +10,7 @@ export default function Home() {
       <div id="banner" className=" flex flex-col-reverse items-center justify-evenly w-full mt-20 h-[700px] sm:p-12 p-4 bg-black border-b-2 border-b-white dark:border-none dark:bg-blue-900 sm:flex-row sm:items-start sm:justify-normal sm:h-unit-8xl lg:h-unit-9xl">
 
         <div className="w-full flex flex-col justify-evenly items-center max-h-full sm:w-3/4 sm:items-start xl:mt-2">
-          <h1 className="text-5xl text-center font-semibold sm:text-5xl sm:text-start md:text-6xl lg:text-8xl ">Welcome to SuperRay</h1>
+          <h1 className="text-5xl xl:max-w-xl text-center font-semibold sm:text-5xl sm:text-start md:text-6xl lg:text-8xl ">Welcome to SuperRay</h1>
 
           <p className="max-w-md text-center text-md mt-4 text-slate-300 font-semibold sm:text-start sm:w-1/2 sm:mt-6 sm:text-md lg:text-lg">GAN Powered Platform For Super Resolution
             Assessment & Diagnostic For Medical Imaging.</p>

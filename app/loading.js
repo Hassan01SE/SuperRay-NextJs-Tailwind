@@ -10,7 +10,7 @@ const Loading = () => {
             <div className="flex flex-col items-center animate-splash">
                 <Image className='w-[400px]  md:w-[450px]  lg:w-[550px]' src={Logo} alt="logo" />
                 <p className='text-center text-md lg:text-2xl font-semibold text-white uppercase'>AI Precision, Medical Vision ReDefined!</p>
-                <Spinner size='lg' className='mt-4' />
+                <Spinner size='lg' className='mt-4' color='warning' />
             </div>
 
         </div>

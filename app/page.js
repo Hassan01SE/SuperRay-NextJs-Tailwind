@@ -88,7 +88,7 @@ export default function Home() {
 
         <div className='mt-2 w-full h-full flex flex-col items-center'>
 
-          <h1 className='capitalize text-center font-semibold  text-white text-3xl sm:text-5xl lg:text-6xl'> SuperRay in a Nutshell</h1>
+          <h1 className='capitalize text-center font-semibold  text-white text-4xl sm:text-5xl lg:text-6xl'> SuperRay in a Nutshell</h1>
 
           <div className='mt-10 border-blue-300 border-[5px] rounded-md'>
             <Video />

@@ -130,9 +130,9 @@ const Detect = () => {
 
             <div className="flex flex-col items-center justify-start h-full">
 
-                <h1 className="capitalize text-2xl font-semibold text-center sm:text-3xl md:text-4xl lg:text-5xl ">Fracture Detection by AI</h1>
+                <h1 className="capitalize text-3xl font-semibold text-center sm:text-3xl md:text-4xl lg:text-5xl ">Fracture Detection by AI</h1>
 
-                <div id="uploadcontainer" className="w-[80%] mt-6 h-[300px] md:h-[350px] lg:w-[70%] lg:h-[400px] xl:w-[60%] dark:bg-white bg-[#010000] shadow-md rounded-md   outline-gray-200 outline-dotted flex flex-col items-center">
+                <div id="uploadcontainer" className="w-[85%] mt-6 h-[320px] md:h-[350px] lg:w-[70%] lg:h-[400px] xl:w-[60%] dark:bg-white bg-[#010000] shadow-md rounded-md   outline-gray-200 outline-dotted flex flex-col items-center">
 
                     <Image className=" w-[75px]  sm:w-[150px]" src={uploadicon} alt="upload cloud icon" />
 

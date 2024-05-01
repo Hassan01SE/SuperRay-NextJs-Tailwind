@@ -149,8 +149,8 @@ const Detect = () => {
 
                     </FileUploader>
 
-                    <div className="flex flex-row items-center justify-around max-w-full mx-1">
-                        <p className=" max-w-[90%] overflow-x-hidden mt-2 mr-2 capitalize text-white dark:text-slate-500">{file ? `File name: ${file.name}` : "no files uploaded yet"}</p>
+                    <div className="flex flex-row items-center justify-around max-w-full">
+                        <p className=" max-w-full overflow-x-hidden mt-2 mr-2 capitalize text-white dark:text-slate-500">{file ? `File name: ${file.name}` : "no files uploaded yet"}</p>
                         {isfiledrop && <button onClick={removeFile} >&#10060;</button>}
                     </div>
 

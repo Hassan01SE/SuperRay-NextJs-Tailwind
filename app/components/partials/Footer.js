@@ -29,7 +29,7 @@ export const Footer = () => {
                     </ul>
                 </div>
                 <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
-                <span className="block text-sm  sm:text-center dark:text-gray-400 text-white">© 2024 <a href="/" className="hover:underline">SuperRay™</a>. All Rights Reserved.</span>
+                <span className="block text-sm flex-col  sm:text-center dark:text-gray-400 text-white">© 2024 <a href="/" className="hover:underline">SuperRay™</a> <span className='ml-2'> All Rights Reserved.</span></span>
             </div>
         </footer>
     )

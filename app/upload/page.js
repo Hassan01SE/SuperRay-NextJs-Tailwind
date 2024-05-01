@@ -8,7 +8,7 @@ import { FileUploader } from "react-drag-drop-files";
 import { Spinner } from "@nextui-org/react";
 import axios from 'axios';
 
-import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure } from "@nextui-org/react";
+import { Modal, ModalContent, Button, ModalHeader, ModalBody, ModalFooter, useDisclosure } from "@nextui-org/react";
 
 
 const fileTypes = ["JPG", "PNG", "JPEG"];
@@ -16,6 +16,7 @@ const fileTypes = ["JPG", "PNG", "JPEG"];
 const Upload = () => {
 
     const [generatedImage, setGeneratedImage] = useState(null);
+    const [diagnoseReport, setGeneratedDiagnose] = useState(null);
     const [isActive, setActive] = useState(false);
     const [file, setFile] = useState(null);
     const [isButtonDisabled, setIsButtonDisabled] = useState(true);
@@ -50,6 +51,7 @@ const Upload = () => {
             });
             setloadertext('Your Report has been generated!');
             setGeneratedImage(response.data.image);
+            setGeneratedDiagnose(response.data.xreport);
             onOpen();
             console.log(response.data); // Assuming the response is the generated image
 
@@ -101,22 +103,22 @@ const Upload = () => {
                             <Image className="mt-2 self-center mb-2 w-[300px] md:w[450px]" width={300} height={300} src={`data:image/jpeg;base64,${generatedImage}`} alt="xray img" />
                             <ModalBody >
                                 <p>
-                                    <span className="font-bold">Comparison:</span> Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe maiores fuga ullam nihil eum dolorum illum incidunt porro facere, repudiandae deserunt.
+                                    <span className="font-bold">AI Diagnose:</span> {diagnoseReport}
                                 </p>
-                                <p>
+                                {/* <p>
                                     <span className="font-bold">Indication:</span> Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe maiores fuga ullam nihil eum dolorum illum incidunt porro facere, repudiandae deserunt.
                                 </p>
                                 <p>
                                     <span className="font-bold">Findings:</span> Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe maiores fuga ullam nihil eum dolorum illum incidunt porro facere, repudiandae deserunt.
-                                </p>
+                                </p> */}
                             </ModalBody>
                             <ModalFooter>
-                                {/* <Button color="danger" variant="light" onPress={onClose}>
-                                    Close
-                                </Button>
                                 <Button color="primary" onPress={onClose}>
-                                    Action
-                                </Button> */}
+                                    View
+                                </Button>
+                                <Button className="text-white" color="warning">
+                                    Save
+                                </Button>
                             </ModalFooter>
                         </div>
                     )}
@@ -132,7 +134,7 @@ const Upload = () => {
 
             {isActive && <LoaderDiv loaderText={loaderText} />}
 
-            <XrayModal generatedImage={generatedImage} />
+            <XrayModal generatedImage={generatedImage} diagnoseReport={diagnoseReport} />
 
             <div className="flex flex-col items-center justify-start h-full">
 
@@ -156,7 +158,7 @@ const Upload = () => {
                     </FileUploader>
 
                     <div className="flex flex-row items-center justify-around w-full">
-                        <p className="max-w-[90%] overflow-x-hidden mt-2 mr-2 capitalize text-white dark:text-slate-500">{file ? `File name: ${file.name}` : "no files uploaded yet"}</p>
+                        <p className="max-w-full overflow-x-hidden mt-2 mr-2 capitalize text-white dark:text-slate-500">{file ? `File name: ${file.name}` : "no files uploaded yet"}</p>
                         {isfiledrop && <button onClick={removeFile} >&#10060;</button>}
                     </div>
 

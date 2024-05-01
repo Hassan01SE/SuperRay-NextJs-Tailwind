@@ -1,9 +1,22 @@
 
-import bannerimage from '../public/radiologyai.jpg'
-import Link from 'next/link'
+import bannerimage from '../public/radiologyai.jpg';
+import Link from 'next/link';
+
 
 
 export default function Home() {
+
+
+  const Video = () => {
+    return (
+      <video className='w-[350px] h-[500px] bg-black md:w-[720px] md:h-[405px]' controls preload="none" poster='/thumbnailposter.png'>
+        <source src="/superrayvid.mp4" type="video/mp4" />
+
+      </video>
+    )
+  }
+
+
   return (
     <div className="min-h-screen w-full ">
 
@@ -67,6 +80,20 @@ export default function Home() {
 
         <div className="w-full flex flex-col items-center mt-5 sm:mt-0 sm:w-1/2  lg:w-[60%]">
           <img className='w-[300px] h-[300px] lg:w-[400px] lg:h-[400px] xl:w-[450px] xl:h-[450px] rounded-md' src="https://www.mdpi.com/engproc/engproc-31-00084/article_deploy/html/images/engproc-31-00084-g001.png" alt='xray gan' />
+        </div>
+
+      </section>
+
+      <section id='videodiv' className='flex flex-col-reverse items-center justify-end w-full mt-2 h-[700px] p-4  border-b-2 border-b-white dark:border-none sm:p-12 sm:flex-row sm:items-start sm:justify-start sm:h-unit-10xl lg:h-unit-9xl'>
+
+        <div className='mt-2 w-full h-full flex flex-col items-center'>
+
+          <h1 className='capitalize text-center font-semibold  text-white text-3xl sm:text-5xl lg:text-6xl'> SuperRay in a Nutshell</h1>
+
+          <div className='mt-10 border-blue-300 border-[5px] rounded-md'>
+            <Video />
+          </div>
+
         </div>
 
       </section>

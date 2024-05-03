@@ -26,6 +26,7 @@ const Profile = () => {
                         },
                     });
                     setUserData(response.data); // Assuming response.data contains user information
+                    console.log(userData);
                 }
             } catch (error) {
                 setError(error.response); // Assuming the error message is provided by the server
@@ -56,7 +57,7 @@ const Profile = () => {
                         <div className="flex flex-row items-center">
                             <Avatar isBordered src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaj0ucKVpTNbey2YUj2f0V_MDQ1G6jBiwt2w&usqp=CAU" className=" w-12 h-12 sm:w-24 sm:h-24  text-large" />
                             <div className="flex flex-col">
-                                <h1 className="ml-4 text-2xl sm:text-4xl text-white dark:text-black">{userData.first_name}</h1>
+                                <h1 className="ml-4 text-2xl sm:text-4xl text-white dark:text-black">{userData.first_name} {userData.last_name} </h1>
                                 <p className="ml-4 text-slate-400 dark:text-gray-700  ">@{userData.username}</p>
                             </div>
                         </div>

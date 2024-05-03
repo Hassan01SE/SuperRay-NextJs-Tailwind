@@ -15,7 +15,7 @@ export const Footer = () => {
                     </a>
                     <ul className="flex flex-wrap items-center mb-6 text-sm font-medium text-white sm:mb-0 ">
                         <li>
-                            <a href="#" className="hover:underline me-4 md:me-6">About</a>
+                            <a href="/about" className="hover:underline me-4 md:me-6">About</a>
                         </li>
                         <li>
                             <a href="#" className="hover:underline me-4 md:me-6">Privacy Policy</a>

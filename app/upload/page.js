@@ -74,6 +74,7 @@ const Upload = () => {
 
 
 
+
     const LoaderDiv = ({ loaderText }) => {
         return (
             <div className=" rounded-lg z-10 justify-center absolute self-center  w-[350px] h-[400px] md:w-[850px] md:h-[500px] bg-black out border border-white dark:border-none dark:bg-blue-800 flex flex-col items-center animate-splash">
@@ -112,13 +113,13 @@ const Upload = () => {
                                     <span className="font-bold">Findings:</span> Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe maiores fuga ullam nihil eum dolorum illum incidunt porro facere, repudiandae deserunt.
                                 </p> */}
                             </ModalBody>
-                            <ModalFooter>
-                                <Button color="primary" onPress={onClose}>
+                            <ModalFooter className="w-1/2">
+                                <button className=" w-1/2 inline-block rounded bg-blue-700 px-6 pb-2 pt-2.5 text-lg font-medium  leading-normal text-white shadow-info-3 transition duration-150 ease-in-out hover:bg-info-accent-300 hover:shadow-info-2 focus:bg-info-accent-300 focus:shadow-info-2 focus:outline-none focus:ring-0 active:bg-info-600 active:shadow-info-2 motion-reduce:transition-none dark:shadow-black/30 dark:hover:shadow-dark-strong dark:focus:shadow-dark-strong dark:active:shadow-dark-strong" onPress={onClose}>
                                     View
-                                </Button>
-                                <Button className="text-white" color="warning">
-                                    Save
-                                </Button>
+                                </button>
+                                <button className="w-1/2 inline-block rounded bg-danger px-6 pb-2 pt-2.5 text-sm md:text-lg font-medium  leading-normal text-white shadow-warning-3 transition duration-150 ease-in-out hover:bg-danger-accent-300 hover:shadow-warning-2 focus:bg-danger-accent-300 focus:shadow-danger-2 focus:outline-none focus:ring-0 active:bg-danger-600 active:shadow-warning-2 motion-reduce:transition-none dark:shadow-black/30 dark:hover:shadow-dark-strong dark:focus:shadow-dark-strong dark:active:shadow-dark-strong">
+                                    Download PDF
+                                </button>
                             </ModalFooter>
                         </div>
                     )}

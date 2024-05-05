@@ -11,6 +11,7 @@ const Profile = () => {
 
     const [userData, setUserData] = useState(null);
     const [error, setError] = useState(null);
+    const [joinedDate, setJoinedDate] = useState(null);
 
     const router = useRouter();
     const { data: session, status } = useSession();
@@ -25,6 +26,13 @@ const Profile = () => {
                             Authorization: `JWT ${accessToken}`,
                         },
                     });
+                    const dateJoined = new Date(response.data.date_joined);
+                    const formattedDate = `${dateJoined.toLocaleDateString("en-US", {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                    })}`;
+                    setJoinedDate(formattedDate);
                     setUserData(response.data); // Assuming response.data contains user information
                     console.log(userData);
                 }
@@ -67,7 +75,7 @@ const Profile = () => {
                         <div className=" mt-1 flex flex-col  w-full px-2">
 
                             <h1 className="text-2xl font-semibold md:text-4xl self-center text-white dark:text-black">Your Details</h1>
-
+                            <p className="text-md mt-4 text-slate-300 dark:text-slate-600 "> <span className="font-bold"> Account created on:</span> {joinedDate} </p>
                             <p className="text-md mt-4 text-slate-300 dark:text-slate-600 "> <span className="font-bold"> User Name:</span> {userData.username} </p>
                             <p className="text-md mt-2 text-slate-300 dark:text-slate-600 "> <span className="font-bold"> Email Address:</span> {userData.email} </p>
                             <p className="text-md mt-2 text-slate-300 dark:text-slate-600 "> <span className="font-bold"> Phone Number:</span> {userData.phone_number} </p>

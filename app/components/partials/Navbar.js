@@ -2,7 +2,8 @@
 import { jwtDecode } from "jwt-decode";
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
-import { FaBars, FaTimes } from "react-icons/fa";
+import { FaBars, FaTimes, FaHome, FaInfoCircle, FaFileMedical, FaXRay, FaUser, FaSignOutAlt, FaSignInAlt } from "react-icons/fa";
+import { RiFileHistoryFill } from "react-icons/ri";
 import Image from "next/image";
 import Logo from '../../../public/logo.png'
 import avatoricon from '../../../public/profileicon.png'
@@ -13,6 +14,7 @@ import { SunIcon } from "../icons/SunIcon";
 import { signIn, signOut, useSession, status } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { Skeleton } from "@nextui-org/react";
+import HomeIcon from '../icons/HomeIcon';
 
 
 export const Navbar = () => {
@@ -155,37 +157,37 @@ export const Navbar = () => {
     const mobileAuthenticatedLinks = [
         {
             id: 1,
-            name: "Home",
+            name: <div className="flex flex-row"> <FaHome className="mr-2" /> <span>Home</span> </div>,
             link: "/",
         },
         {
             id: 2,
-            name: "Fracture Detection",
+            name: <div className="flex flex-row"> <FaXRay className="mr-2 mt-1" /> <span>Fracture Detection</span> </div>,
             link: "/detect"
         },
         {
             id: 3,
-            name: "Generate X-Ray Report",
+            name: <div className="flex flex-row"> <FaFileMedical className="mr-2 mt-1" /> <span>Generate X-Ray Report</span> </div>,
             link: "/upload"
         },
         {
             id: 4,
-            name: "Past Reports",
+            name: <div className="flex flex-row"> <RiFileHistoryFill className="mr-2 mt-1" /> <span>Past Reports</span> </div>,
             link: '/reports'
         },
         {
             id: 5,
-            name: "About",
+            name: <div className="flex flex-row"> <FaInfoCircle className="mr-2 mt-1" /> <span>About</span> </div>,
             link: '/about'
         },
         {
             id: 6,
-            name: "Profile",
+            name: <div className="flex flex-row"> <FaUser className="mr-2 mt-1" /> <span>Profile</span> </div>,
             link: '/profile'
         },
         {
             id: 7,
-            name: "Sign Out",
+            name: <div className="flex flex-row"> <FaSignOutAlt className="mr-2 mt-1" /> <span>Sign Out</span> </div>,
             link: '/',
         },
     ];
@@ -193,17 +195,17 @@ export const Navbar = () => {
     const mobileLinks = [
         {
             id: 1,
-            name: "Home",
+            name: <div className="flex flex-row"> <FaHome className="mr-2" /> <span>Home</span> </div>,
             link: "/",
         },
         {
             id: 2,
-            name: "Fracture Detection",
+            name: <div className="flex flex-row"> <FaXRay className="mr-2 mt-1" /> <span>Fracture Detection</span> </div>,
             link: "/detect"
         },
         {
             id: 3,
-            name: "Generate X-Ray Report",
+            name: <div className="flex flex-row"> <FaFileMedical className="mr-2 mt-1" /> <span>Generate X-Ray Report</span> </div>,
             link: "/upload"
         },
         /* {
@@ -213,20 +215,20 @@ export const Navbar = () => {
         }, */
         {
             id: 5,
-            name: "About",
+            name: <div className="flex flex-row"> <FaInfoCircle className="mr-2 mt-1" /> <span>About</span> </div>,
             link: '/about'
         },
 
         {
             id: 6,
-            name: "Sign In",
+            name: <div className="flex flex-row"> <FaSignInAlt className="mr-2 mt-1" /> <span>Sign In</span> </div>,
             link: '/login'
         },
     ];
 
     return (
         <div className="flex justify-between items-center w-full h-20 z-50 sm:px-4 text-white dark:bg-[#0C56BC] bg-[#040D12] fixed nav shadow-md">
-            <div style={{ minWidth: '300px' }}>
+            <div className="" style={{ minWidth: '300px' }}>
                 {/* <h1 className="text-5xl font-signature ml-2"><a className="link-underline hover:transition ease-in-out delay-150 hover:underline hover:decoration-solid" href="">Logo</a></h1> */}
                 <h1 className="text-5xl font-signature sm:ml-1 mt-3">
                     <a
@@ -354,7 +356,7 @@ export const Navbar = () => {
                             key={id}
                             className="px-4 cursor-pointer capitalize py-4 text-3xl hover:underline hover:opacity-80" //it was text-4xl before and py 6
                         >
-                            <Link onClick={() => { setNav(!nav); id === 7 && signOut() }} href={link} >
+                            <Link className="flex flex-row" onClick={() => { setNav(!nav); id === 7 && signOut() }} href={link} >
                                 {name}
                             </Link>
                         </li>

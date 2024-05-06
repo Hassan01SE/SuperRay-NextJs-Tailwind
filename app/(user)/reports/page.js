@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useSession, status } from "next-auth/react";
 import { useRouter, Link } from "next/navigation";
 import Loading from "../../loading";
-
+import { Card, Skeleton, Button } from "@nextui-org/react";
 
 
 const Report = () => {
@@ -38,11 +38,11 @@ const Report = () => {
     }
 
     return (
-        <div className="mt-20  pb-2 w-full flex flex-col ">
+        <div className="mt-20  pb-2 w-full flex flex-col min-h-screen ">
             {status === 'loading' && <Loading />}
 
-            {status === 'authenticated' && reports &&
-                (<div className="flex flex-col  ">
+            {status === 'authenticated' && reports.length > 0 &&
+                (<div className="flex flex-col max-h-full">
                     <h1 className="mt-4 font-semibold text-center capitalize text-4xl md:text-6xl">Your past reports</h1>
 
                     <div className="mt-8 pb-6 px-4 flex flex-col  max-h-full">
@@ -74,8 +74,50 @@ const Report = () => {
                 </div>)}
 
 
-            {status === 'authenticated' && !reports && !error && <p className="h-screen">Loading Past Records...</p>}
-            {status === 'unauthenticated' && <p className="h-screen">Please sign in to view your past reports.</p>}
+            {status === 'authenticated' && reports.length === 0 &&
+
+                <div className="h-screen flex flex-col w-full">
+                    <h1 className="mt-4 font-semibold text-center capitalize text-4xl md:text-6xl">Your past reports</h1>
+
+                    <Card className="max-w-xl space-y-5 p-4 mt-4">
+                        <Skeleton className="">
+                            <div className="h-24 bg-secondary"></div>
+                            <Button size="sm" variant="flat" color="secondary"></Button>
+                        </Skeleton>
+                    </Card>
+
+                    <Card className="max-w-xl space-y-5 p-4 mt-4">
+                        <Skeleton className="">
+                            <div className="h-24 bg-secondary"></div>
+                            <Button size="sm" variant="flat" color="secondary"></Button>
+                        </Skeleton>
+                    </Card>
+                    <Card className="max-w-xl space-y-5 p-4 mt-4">
+                        <Skeleton className="">
+                            <div className="h-24 bg-secondary"></div>
+                            <Button size="sm" variant="flat" color="secondary"></Button>
+                        </Skeleton>
+                    </Card>
+                    <Card className="max-w-xl space-y-5 p-4 mt-4">
+                        <Skeleton className="">
+                            <div className="h-24 bg-secondary"></div>
+                            <Button size="sm" variant="flat" color="secondary"></Button>
+                        </Skeleton>
+                    </Card>
+                    <Card className="max-w-xl space-y-5 p-4 mt-4">
+                        <Skeleton className="">
+                            <div className="h-24 bg-secondary"></div>
+                            <Button size="sm" variant="flat" color="secondary"></Button>
+                        </Skeleton>
+                    </Card>
+
+
+
+
+                </div>}
+
+
+            {status === 'unauthenticated' && <div className="h-screen"> <p> Please sign in to view your past reports.</p> </div>}
 
         </div>
     );

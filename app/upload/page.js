@@ -7,6 +7,8 @@ import React, { useState } from "react";
 import { FileUploader } from "react-drag-drop-files";
 import { Spinner } from "@nextui-org/react";
 import axios from 'axios';
+import { useSession, status } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 import { Modal, ModalContent, Button, ModalHeader, ModalBody, ModalFooter, useDisclosure } from "@nextui-org/react";
 
@@ -14,6 +16,9 @@ import { Modal, ModalContent, Button, ModalHeader, ModalBody, ModalFooter, useDi
 const fileTypes = ["JPG", "PNG", "JPEG"];
 
 const Upload = () => {
+
+    const router = useRouter();
+    const { data: session, status } = useSession();
 
     const [generatedImage, setGeneratedImage] = useState(null);
     const [diagnoseReport, setGeneratedDiagnose] = useState(null);
@@ -72,7 +77,41 @@ const Upload = () => {
         }
     };
 
+    const saveReport = async () => {
+        try {
+            const accessToken = session.user.access;;
+            if (!accessToken) throw new Error('Access token not found');
+            // Convert base64 image to blob
+            const byteCharacters = atob(generatedImage);
+            const byteNumbers = new Array(byteCharacters.length);
+            for (let i = 0; i < byteCharacters.length; i++) {
+                byteNumbers[i] = byteCharacters.charCodeAt(i);
+            }
+            const byteArray = new Uint8Array(byteNumbers);
+            const blob = new Blob([byteArray], { type: 'image/jpeg' });
 
+            // Create a File object from the blob
+            const file = new File([blob], 'image.jpg', { type: 'image/jpeg' });
+
+            // Create FormData and append the File
+            const formData = new FormData();
+            formData.append('image', file);
+            formData.append('diagnose', diagnoseReport);
+
+            const response = await axios.post('http://127.0.0.1:8000/api/save-report', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    'Authorization': `JWT ${accessToken}`
+                }
+            });
+            // Handle success response
+            console.log(response.data);
+            router.push(`/reports/${response.data.id}`);
+        } catch (error) {
+            // Handle error
+            console.error('Error saving report:', error);
+        }
+    };
 
 
     const LoaderDiv = ({ loaderText }) => {
@@ -86,7 +125,7 @@ const Upload = () => {
         )
     }
 
-    const XrayModal = ({ generatedImage }) => {
+    const XrayModal = ({ generatedImage, diagnoseReport }) => {
 
 
         return (
@@ -114,12 +153,16 @@ const Upload = () => {
                                 </p> */}
                             </ModalBody>
                             <ModalFooter className="w-1/2">
-                                <button className=" w-1/2 inline-block rounded bg-blue-700 px-6 pb-2 pt-2.5 text-lg font-medium  leading-normal text-white shadow-info-3 transition duration-150 ease-in-out hover:bg-info-accent-300 hover:shadow-info-2 focus:bg-info-accent-300 focus:shadow-info-2 focus:outline-none focus:ring-0 active:bg-info-600 active:shadow-info-2 motion-reduce:transition-none dark:shadow-black/30 dark:hover:shadow-dark-strong dark:focus:shadow-dark-strong dark:active:shadow-dark-strong" onPress={onClose}>
-                                    View
-                                </button>
-                                <button className="w-1/2 inline-block rounded bg-danger px-6 pb-2 pt-2.5 text-sm md:text-lg font-medium  leading-normal text-white shadow-warning-3 transition duration-150 ease-in-out hover:bg-danger-accent-300 hover:shadow-warning-2 focus:bg-danger-accent-300 focus:shadow-danger-2 focus:outline-none focus:ring-0 active:bg-danger-600 active:shadow-warning-2 motion-reduce:transition-none dark:shadow-black/30 dark:hover:shadow-dark-strong dark:focus:shadow-dark-strong dark:active:shadow-dark-strong">
-                                    Download PDF
-                                </button>
+                                {status === 'authenticated' &&
+                                    <>
+                                        <button onClick={saveReport} className=" w-full inline-block rounded bg-blue-700 px-6 pb-2 pt-2.5 text-lg font-medium  leading-normal text-white shadow-info-3 transition duration-150 ease-in-out hover:bg-info-accent-300 hover:shadow-info-2 focus:bg-info-accent-300 focus:shadow-info-2 focus:outline-none focus:ring-0 active:bg-info-600 active:shadow-info-2 motion-reduce:transition-none dark:shadow-black/30 dark:hover:shadow-dark-strong dark:focus:shadow-dark-strong dark:active:shadow-dark-strong" onPress={onClose}>
+                                            View
+                                        </button>
+                                        {/*  <button className="w-1/2 inline-block rounded bg-danger px-6 pb-2 pt-2.5 text-sm md:text-lg font-medium  leading-normal text-white shadow-warning-3 transition duration-150 ease-in-out hover:bg-danger-accent-300 hover:shadow-warning-2 focus:bg-danger-accent-300 focus:shadow-danger-2 focus:outline-none focus:ring-0 active:bg-danger-600 active:shadow-warning-2 motion-reduce:transition-none dark:shadow-black/30 dark:hover:shadow-dark-strong dark:focus:shadow-dark-strong dark:active:shadow-dark-strong">
+                                            Download PDF
+                                        </button> */}
+                                    </>
+                                }
                             </ModalFooter>
                         </div>
                     )}

@@ -79,7 +79,8 @@ const Report = () => {
                 <div className="h-screen flex flex-col w-full">
                     <h1 className="mt-4 font-semibold text-center capitalize text-4xl md:text-6xl">Your past reports</h1>
 
-                    <Card className="max-w-xl space-y-5 p-4 mt-4">
+                    <div className="mt-4 px-2">No Reports Found</div>
+                    {/* <Card className="max-w-xl space-y-5 p-4 mt-4">
                         <Skeleton className="">
                             <div className="h-24 bg-secondary"></div>
                             <Button size="sm" variant="flat" color="secondary"></Button>
@@ -110,7 +111,7 @@ const Report = () => {
                             <Button size="sm" variant="flat" color="secondary"></Button>
                         </Skeleton>
                     </Card>
-
+ */}
 
 
 

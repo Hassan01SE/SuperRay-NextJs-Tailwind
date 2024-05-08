@@ -31,6 +31,8 @@ const Upload = () => {
     const [btntext, setBtnText] = useState('Generate Report');
     const { isOpen, onOpen, onClose } = useDisclosure();
 
+    const [viewBtn, setViewBtn] = useState('Save Report')
+
     const handleChange = (file) => {
         setFile(file);
         setFileDrop(true);
@@ -81,6 +83,8 @@ const Upload = () => {
         try {
             const accessToken = session.user.access;;
             if (!accessToken) throw new Error('Access token not found');
+
+            setViewBtn('Saving ..')
             // Convert base64 image to blob
             const byteCharacters = atob(generatedImage);
             const byteNumbers = new Array(byteCharacters.length);
@@ -105,11 +109,15 @@ const Upload = () => {
                 }
             });
             // Handle success response
+            setViewBtn('Redirecting ..')
             console.log(response.data);
             router.push(`/reports/${response.data.id}`);
         } catch (error) {
             // Handle error
             console.error('Error saving report:', error);
+        }
+        finally {
+            setViewBtn('Save Report');
         }
     };
 

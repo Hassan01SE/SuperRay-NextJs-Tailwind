@@ -8,7 +8,7 @@ const Licensing = () => {
             <div className="max-w-4xl mx-auto">
                 <h1 className="text-4xl font-bold mb-4">Licensing Agreement</h1>
                 <p className="mb-6">Last updated: June 04, 2024</p>
-                <p className="mb-6">This Licensing Agreement ("Agreement") is entered into by and between SuperRay (&quot;Company&quot;, &quot;We&quot;, &quot;Us&quot;, or &quot;Our&quot;) and the user (&quot;You&quot; or &quot;Your&quot;) who accesses and uses our AI-based medical diagnostic services (&quot;Service&quot;). By using the Service, You agree to be bound by the terms and conditions of this Agreement.</p>
+                <p className="mb-6">This Licensing Agreement (&quot;Agreement&quot;) is entered into by and between SuperRay (&quot;Company&quot;, &quot;We&quot;, &quot;Us&quot;, or &quot;Our&quot;) and the user (&quot;You&quot; or &quot;Your&quot;) who accesses and uses our AI-based medical diagnostic services (&quot;Service&quot;). By using the Service, You agree to be bound by the terms and conditions of this Agreement.</p>
 
                 <h2 className="text-3xl font-semibold mb-4">License Grant</h2>
                 <p className="mb-6">The Company grants You a limited, non-exclusive, non-transferable, revocable license to access and use the Service strictly in accordance with this Agreement.</p>
@@ -23,7 +23,7 @@ const Licensing = () => {
                 </ul>
 
                 <h2 className="text-3xl font-semibold mb-4">Ownership</h2>
-                <p className="mb-4">The Service and all rights therein are and shall remain Company's property. Neither this Agreement nor Your use of the Service conveys or grants to You any rights:</p>
+                <p className="mb-4">The Service and all rights therein are and shall remain Company&apos;s property. Neither this Agreement nor Your use of the Service conveys or grants to You any rights:</p>
                 <ul className="list-disc list-inside mb-6">
                     <li className="mb-2">In or related to the Service, except for the limited license granted above.</li>
                     <li className="mb-2">To use or reference in any manner Company’s company names, logos, product and service names, trademarks or services marks.</li>

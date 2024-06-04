@@ -18,13 +18,13 @@ export const Footer = () => {
                             <a href="/about" className="hover:underline me-4 md:me-6">About</a>
                         </li>
                         <li>
-                            <a href="#" className="hover:underline me-4 md:me-6">Privacy Policy</a>
+                            <a href="/privacy-policy" className="hover:underline me-4 md:me-6">Privacy Policy</a>
                         </li>
                         <li>
-                            <a href="#" className="hover:underline me-4 md:me-6">Licensing</a>
+                            <a href="/licensing" className="hover:underline me-4 md:me-6">Licensing</a>
                         </li>
                         <li>
-                            <a href="#" className="hover:underline">Contact</a>
+                            <a href="/contact" className="hover:underline">Contact Us</a>
                         </li>
                     </ul>
                 </div>

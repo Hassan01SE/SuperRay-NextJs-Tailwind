@@ -11,6 +11,7 @@ import logo from "../../../../public/srblue.png";
 import Image from 'next/image';
 import XrayPdf from '../../../components/XrayPDF';
 import { usePDF } from 'react-to-pdf';
+import ChatIcon from '../../../components/chat/ChatIcon';
 
 
 
@@ -61,7 +62,9 @@ const ReportPage = () => {
 
 
 
-
+    if (status === 'loading') {
+        return <Loading />
+    }
 
 
     return (
@@ -69,7 +72,7 @@ const ReportPage = () => {
 
 
 
-            {status === 'loading' && <Loading />}
+            {/* {status === 'loading' && <Loading />} */}
 
             {status === 'authenticated' && report &&
                 <div id="report-detail" className="mt-1 w-full max-h-full">
@@ -89,11 +92,13 @@ const ReportPage = () => {
                         </div>
 
                     </section>
+                    <ChatIcon />
                 </div>
             }
 
             {status === 'authenticated' && !report && !error && <p className="h-screen mt-20">Loading Report ..</p>}
             {status === 'unauthenticated' && <p className="h-screen mt-20">Please sign in to view your past reports.</p>}
+
 
         </div>
     );

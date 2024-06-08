@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import Loading from "../../loading";
 import { Avatar } from "@nextui-org/react";
 import { Divider } from "@nextui-org/react";
+import Link from "next/link";
 
 const Profile = () => {
 
@@ -80,6 +81,8 @@ const Profile = () => {
                             <p className="text-md mt-2 text-slate-300 dark:text-slate-600 "> <span className="font-bold"> Email Address:</span> {userData.email} </p>
                             <p className="text-md mt-2 text-slate-300 dark:text-slate-600 "> <span className="font-bold"> Phone Number:</span> {userData.phone_number} </p>
                             <p className="text-md mt-2 text-slate-300 dark:text-slate-600 "> <span className="font-bold"> Gender:</span> {userData.sex === 'M' && "Male"} </p>
+
+                            <p className="text-md mt-2 text-slate-300 dark:text-slate-600 "> <span className="font-bold"> Total reports generated:</span> <Link href='/reports' className="underline font-semibold" > {userData.reports.length}</Link> </p>
                         </div>
 
                     </div>

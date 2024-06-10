@@ -1,3 +1,4 @@
+'use client';
 import { addDoc, collection, Timestamp } from "firebase/firestore/lite";
 import { firestore } from "../../utils/fireBaseConfig";
 

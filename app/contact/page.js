@@ -1,5 +1,23 @@
 'use client';
 import { useState } from 'react';
+import { addDoc, collection, Timestamp } from "firebase/firestore/lite";
+import { firestore } from "../../utils/fireBaseConfig";
+
+export const sendContactForm = async ({ name, email, message }) => {
+    try {
+        const ref = collection(firestore, "contact");
+        await addDoc(ref, {
+            name,
+            email,
+            message,
+            sentAt: Timestamp.now().toDate(),
+        });
+        return 0;
+    } catch (err) {
+        console.log(err)
+        return -1;
+    }
+};
 
 
 
@@ -22,7 +40,15 @@ const Contact = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        try {
+        const res = await sendContactForm(formData);
+        if (res == 0) {
+            alert("Thank you for your valuable comment!");
+            setFormData({ name: '', email: '', message: '' });
+        } else {
+            alert("Something went wrong! Please try again");
+        }
+
+        /* try {
             const response = await fetch('https://your-backend-api/contact', {
                 method: 'POST',
                 headers: {
@@ -40,7 +66,7 @@ const Contact = () => {
         } catch (error) {
             console.error('Error:', error);
             alert('An error occurred while sending your message.');
-        }
+        } */
     };
 
     return (

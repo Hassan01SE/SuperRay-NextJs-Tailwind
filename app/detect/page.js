@@ -43,7 +43,7 @@ const Detect = () => {
         formData.append('image', file);
 
         try {
-            const response = await axios.post('http://127.0.0.1:8000/api/detect-fractures/', formData, {
+            const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}detect-fractures/`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }

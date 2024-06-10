@@ -51,7 +51,7 @@ const Upload = () => {
         formData.append('image', file);
 
         try {
-            const response = await axios.post('http://127.0.0.1:8000/api/super-resolution/', formData, {
+            const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}super-resolution/`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
@@ -102,7 +102,7 @@ const Upload = () => {
             formData.append('image', file);
             formData.append('diagnose', diagnoseReport);
 
-            const response = await axios.post('http://127.0.0.1:8000/api/save-report', formData, {
+            const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}save-report`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     'Authorization': `JWT ${accessToken}`

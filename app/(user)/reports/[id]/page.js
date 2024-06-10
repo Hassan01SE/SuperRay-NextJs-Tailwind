@@ -32,7 +32,7 @@ const ReportPage = () => {
                 try {
                     if (status === 'authenticated') {
                         const accessToken = session.user.access;
-                        const response = await axios.get(`http://127.0.0.1:8000/api/reports/${id}`, {
+                        const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}reports/${id}`, {
                             headers: {
                                 Authorization: `JWT ${accessToken}`,
                             },

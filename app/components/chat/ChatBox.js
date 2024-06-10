@@ -17,7 +17,7 @@ const ChatBox = ({ closeChat }) => {
             setMessage('');
 
             try {
-                const response = await axios.post('http://127.0.0.1:8000/api/chat/', { message });
+                const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}chat/`, { message });
                 setChat([...chat, { sender: 'user', text: message }, { sender: 'bot', text: response.data.message }]);
             } catch (error) {
                 console.error('Error:', error);

@@ -61,7 +61,7 @@ const Register = () => {
         console.log(values);
         setBtnDisable(true);
         try {
-            await axios.post("http://127.0.0.1:8000/api/register/", values);
+            await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}register/`, values);
             // Handle success
             console.log("User registered successfully!");
             alert('success');

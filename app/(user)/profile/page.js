@@ -10,6 +10,7 @@ import Link from "next/link";
 
 const Profile = () => {
 
+
     const [userData, setUserData] = useState(null);
     const [error, setError] = useState(null);
     const [joinedDate, setJoinedDate] = useState(null);
@@ -22,7 +23,7 @@ const Profile = () => {
             try {
                 if (status === 'authenticated') {
                     const accessToken = session.user.access;
-                    const response = await axios.get('http://127.0.0.1:8000/api/profile/', {
+                    const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}profile/`, {
                         headers: {
                             Authorization: `JWT ${accessToken}`,
                         },

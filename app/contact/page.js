@@ -1,28 +1,8 @@
 'use client';
 import { useState } from 'react';
-import { addDoc, collection, Timestamp } from "firebase/firestore/lite";
-import { firestore } from "../../utils/fireBaseConfig";
-
-export const sendContactForm = async ({ name, email, message }) => {
-    try {
-        const ref = collection(firestore, "contact");
-        await addDoc(ref, {
-            name,
-            email,
-            message,
-            sentAt: Timestamp.now().toDate(),
-        });
-        return 0;
-    } catch (err) {
-        console.log(err)
-        return -1;
-    }
-};
-
-
+import { sendContactForm } from "./sendContactForm";
 
 const Contact = () => {
-
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -39,40 +19,18 @@ const Contact = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
         const res = await sendContactForm(formData);
-        if (res == 0) {
+        if (res === 0) {
             alert("Thank you for your valuable comment!");
             setFormData({ name: '', email: '', message: '' });
         } else {
             alert("Something went wrong! Please try again");
         }
-
-        /* try {
-            const response = await fetch('https://your-backend-api/contact', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData),
-            });
-
-            if (response.ok) {
-                alert('Your message has been sent successfully.');
-                setFormData({ name: '', email: '', message: '' });
-            } else {
-                alert('Failed to send the message.');
-            }
-        } catch (error) {
-            console.error('Error:', error);
-            alert('An error occurred while sending your message.');
-        } */
     };
 
     return (
-
-        <main className="mt-24 mb-6 min-h-screen  text-slate-200 w-full">
-            <div className=" w-full flex flex-col items-center">
+        <main className="mt-24 mb-6 min-h-screen text-slate-200 w-full">
+            <div className="w-full flex flex-col items-center">
                 <h1 className="text-5xl font-bold mb-5 text-center">Contact Us</h1>
                 <form onSubmit={handleSubmit} className="bg-black outline dark:outline-none dark:bg-blue-950 md:w-[650px] p-8 rounded-lg shadow-lg space-y-6">
                     <div>

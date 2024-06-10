@@ -1,10 +1,8 @@
-'use client'
-// Import the functions you need from the SDKs you need
+'use client';
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-import { getFirestore } from "firebase/firestore/lite"; // Import Firestore
+import { getAnalytics, isSupported } from "firebase/analytics";
+import { getFirestore } from "firebase/firestore/lite";
 
-// Your web app's Firebase configuration
 const firebaseConfig = {
     apiKey: "AIzaSyApMiNn50KJecFGsLyQFZ4maomYOlsk2zQ",
     authDomain: "super-ray-418422.firebaseapp.com",
@@ -15,9 +13,13 @@ const firebaseConfig = {
     measurementId: "G-GDKMX2HTFH"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-const firestore = getFirestore(app); // Initialize Firestore
+let analytics;
 
-export { app, analytics, firestore }; // Export Firestore
+if (typeof window !== 'undefined' && isSupported()) {
+    analytics = getAnalytics(app);
+}
+
+const firestore = getFirestore(app);
+
+export { app, analytics, firestore };

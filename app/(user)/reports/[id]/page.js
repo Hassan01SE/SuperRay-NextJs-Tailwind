@@ -15,6 +15,7 @@ import ChatIcon from '../../../components/chat/ChatIcon';
 
 
 
+
 const ReportPage = () => {
     const { data: session, status } = useSession();
     const router = useRouter();
@@ -95,6 +96,8 @@ const ReportPage = () => {
                     <ChatIcon />
                 </div>
             }
+
+            {status === 'authenticated' && !report && <div>No report found </div>}
 
             {status === 'authenticated' && !report && !error && <p className="h-screen mt-20">Loading Report ..</p>}
             {status === 'unauthenticated' && <p className="h-screen mt-20">Please sign in to view your past reports.</p>}

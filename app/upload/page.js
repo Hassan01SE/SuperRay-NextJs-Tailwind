@@ -11,6 +11,7 @@ import { useSession, status } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 import { Modal, ModalContent, Button, ModalHeader, ModalBody, ModalFooter, useDisclosure } from "@nextui-org/react";
+import Alert from '../components/UI/Alert'
 
 
 const fileTypes = ["JPG", "PNG", "JPEG"];
@@ -31,7 +32,9 @@ const Upload = () => {
     const [btntext, setBtnText] = useState('Generate Report');
     const { isOpen, onOpen, onClose } = useDisclosure();
 
-    const [viewBtn, setViewBtn] = useState('Save Report')
+    const [viewBtn, setViewBtn] = useState('Save Report');
+    const [isMedicalImage, setIsMedicalImage] = useState(true);
+    const [alertError, setAlertError] = useState();
 
     const handleChange = (file) => {
         setFile(file);
@@ -65,9 +68,11 @@ const Upload = () => {
         } catch (error) {
 
             if (error.response && error.response.status === 403) {
-                alert('Only medical image allowed');
+                setAlertError('Only medical image allowed');
+                setIsMedicalImage(false);
             } else {
-                alert('Something went wrong');
+                setAlertError('Something went wrong');
+                setIsMedicalImage(false);
             }
             console.error('Error generating report:', error);
             // Handle error
@@ -183,6 +188,8 @@ const Upload = () => {
 
     return (
         <div className=" min-h-screen w-full flex flex-col px-2 py-4 mt-20">
+
+            {!isMedicalImage && <Alert message="Only Medical Images Allowed!" />}
 
             {isActive && <LoaderDiv loaderText={loaderText} />}
 

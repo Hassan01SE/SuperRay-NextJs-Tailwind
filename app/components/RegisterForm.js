@@ -69,7 +69,15 @@ const Register = () => {
         } catch (error) {
             // Handle error
             console.error("Registration failed:", error);
-            alert('failed');
+            if (error.response.status === 500) {
+                alert('Server Error, try later!');
+            }
+            else if (error.response.status === 400) {
+                alert('Bad Request, Username may already exist!');
+            }
+            else {
+                alert('Something went wrong..');
+            }
         }
         finally {
             setBtnDisable(false);

@@ -7,6 +7,7 @@ import Loading from "../../loading";
 import { Avatar } from "@nextui-org/react";
 import { Divider } from "@nextui-org/react";
 import Link from "next/link";
+import { MdEdit, MdSave } from "react-icons/md";
 
 const Profile = () => {
 
@@ -70,6 +71,7 @@ const Profile = () => {
                                 <h1 className="ml-4 text-2xl sm:text-4xl text-white dark:text-black">{userData.first_name} {userData.last_name} </h1>
                                 <p className="ml-4 text-slate-400 dark:text-gray-700  ">@{userData.username}</p>
                             </div>
+
                         </div>
 
                         <Divider className="my-4 w-[95%] self-center dark:bg-slate-300 bg-white mt-10" />

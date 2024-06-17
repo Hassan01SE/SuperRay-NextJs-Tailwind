@@ -1,7 +1,7 @@
 'use client'
 import { jwtDecode } from "jwt-decode";
 import Link from "next/link";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { FaBars, FaTimes, FaHome, FaInfoCircle, FaFileMedical, FaXRay, FaUser, FaSignOutAlt, FaSignInAlt } from "react-icons/fa";
 import { RiFileHistoryFill } from "react-icons/ri";
 import Image from "next/image";
@@ -15,11 +15,12 @@ import { signIn, signOut, useSession, status } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { Skeleton } from "@nextui-org/react";
 import HomeIcon from '../icons/HomeIcon';
+import ThemeContext from "../../contexts/ThemeContext";
 
 
 export const Navbar = () => {
 
-
+    const { isDarkTheme, toggleTheme } = useContext(ThemeContext);
 
     const router = useRouter();
     const { data: session, status } = useSession();
@@ -32,7 +33,7 @@ export const Navbar = () => {
     const [nav, setNav] = useState(false);
     const [islogged, setlogin] = useState();
 
-    const [isDarkMode, setIsDarkMode] = useState(true);
+    const [isDarkMode, setIsDarkMode] = useState(isDarkTheme);
 
     useEffect(() => {
         if (session) {
@@ -49,13 +50,22 @@ export const Navbar = () => {
         }
     }, [session])
 
-    // Function to handle switch toggle
+    useEffect(() => {
+        setIsDarkMode(isDarkTheme);
+    }, [isDarkTheme]);
+
     const handleSwitchToggle = () => {
-        setIsDarkMode(!isDarkMode);
+        toggleTheme();
+        console.log(isDarkTheme);
     };
 
+    // Function to handle switch toggle
+    /* const handleSwitchToggle = () => {
+        toggleTheme(isDarkMode);
+    }; */
+
     // Effect to update HTML class name based on dark mode state
-    useEffect(() => {
+    /* useEffect(() => {
         if (isDarkMode) {
             document.documentElement.classList.add('dark');
         }
@@ -64,7 +74,7 @@ export const Navbar = () => {
         }
 
     }, [isDarkMode]);
-
+ */
     // Function to hide nav on resize
     const handleResize = () => {
         if (window.innerWidth >= 1200) { // Assuming 768px is your md breakpoint
@@ -231,14 +241,14 @@ export const Navbar = () => {
             <div className="" style={{ minWidth: '300px' }}>
                 {/* <h1 className="text-5xl font-signature ml-2"><a className="link-underline hover:transition ease-in-out delay-150 hover:underline hover:decoration-solid" href="">Logo</a></h1> */}
                 <h1 className="text-5xl font-signature sm:ml-1 mt-3">
-                    <a
+                    <Link
                         className=""
                         href="/"
 
                         rel="noreferrer"
                     >
                         <Image className="logo" src={Logo} width={375} />
-                    </a>
+                    </Link>
                 </h1>
             </div>
 
@@ -282,10 +292,10 @@ export const Navbar = () => {
                                 <p className="font-bold text-white">Signed in as</p>
                                 <p className="font-bold text-white">{email}</p>
                             </DropdownItem>
-                            <DropdownItem key="my_profile" href="/profile">
-                                My Profile
+                            <DropdownItem key="my_profile" >
+                                <Link href="/profile">My Profile</Link>
                             </DropdownItem>
-                            <DropdownItem key="past_reports" href="/reports">Past Reports</DropdownItem>
+                            <DropdownItem key="past_reports" > <Link href="/reports">Past Reports</Link></DropdownItem>
                             {/*
                         <DropdownItem key="analytics">
                             Analytics
@@ -332,7 +342,7 @@ export const Navbar = () => {
 
             <Switch
                 className="hidden min-[1200px]:flex dark"
-                defaultSelected={true}
+                isSelected={isDarkTheme}
                 size="lg"
                 color="primary"
                 startContent={<MoonIcon />}
@@ -376,7 +386,7 @@ export const Navbar = () => {
                     <li className=" mt-10 mr-2 self-end">
                         <Switch
                             className=" min-[1200px]:flex dark"
-                            defaultSelected={true}
+                            defaultSelected={isDarkTheme}
                             size="md"
                             color="primary"
                             startContent={<MoonIcon />}

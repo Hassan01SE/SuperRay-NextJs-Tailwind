@@ -5,7 +5,8 @@ const Alert = ({ message }) => {
     const [isVisible, setIsVisible] = useState(true);
 
     const handleClose = () => {
-        setIsVisible(false);
+        isVisible ? setIsVisible(false) : setIsVisible(true);
+
     };
 
     if (!isVisible) {

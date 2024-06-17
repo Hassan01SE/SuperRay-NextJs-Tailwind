@@ -8,6 +8,8 @@ import { Avatar } from "@nextui-org/react";
 import { Divider } from "@nextui-org/react";
 import Link from "next/link";
 import { MdEdit, MdSave } from "react-icons/md";
+import UnAuthorizeDiv from "../../components/UI/UnAuthorizedDiv";
+import MustLogin from "../../components/UI/MustLogin";
 
 const Profile = () => {
 
@@ -41,6 +43,7 @@ const Profile = () => {
                 }
             } catch (error) {
                 setError(error.response); // Assuming the error message is provided by the server
+
             }
         };
 
@@ -95,8 +98,8 @@ const Profile = () => {
                 </div>
             )}
             {status === 'authenticated' && !userData && !error && <p>Loading user data...</p>}
-            {status === 'unauthenticated' && <p>Please sign in to view your profile.</p>}
-            {error && <p>Error: {error}</p>}
+            {status === 'unauthenticated' && <MustLogin />}
+            {error && <UnAuthorizeDiv error={error} />}
         </div>
     );
 }

@@ -11,7 +11,7 @@ import { useSession, status } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 import { Modal, ModalContent, Button, ModalHeader, ModalBody, ModalFooter, useDisclosure } from "@nextui-org/react";
-import Alert from '../components/UI/Alert'
+import { MdErrorOutline, MdClose } from "react-icons/md";
 
 
 const fileTypes = ["JPG", "PNG", "JPEG"];
@@ -35,6 +35,7 @@ const Upload = () => {
     const [viewBtn, setViewBtn] = useState('Save Report');
     const [isMedicalImage, setIsMedicalImage] = useState(true);
     const [alertError, setAlertError] = useState();
+
 
     const handleChange = (file) => {
         setFile(file);
@@ -63,6 +64,7 @@ const Upload = () => {
             setGeneratedImage(response.data.image);
             setGeneratedDiagnose(response.data.xreport);
             onOpen();
+            setIsMedicalImage(true);
             console.log(response.data); // Assuming the response is the generated image
 
         } catch (error) {
@@ -77,6 +79,7 @@ const Upload = () => {
             console.error('Error generating report:', error);
             // Handle error
         } finally {
+
             setActive(false); // Hide loader
             setFile(null);
             setFileDrop(false);
@@ -189,7 +192,17 @@ const Upload = () => {
     return (
         <div className=" min-h-screen w-full flex flex-col px-2 py-4 mt-20">
 
-            {!isMedicalImage && <Alert message="Only Medical Images Allowed!" />}
+            {!isMedicalImage && (<div className="mt-2 mb-2 p-2 w-full max-w-md mx-auto">
+                <div className="flex items-center justify-between bg-red-500 text-white text-sm font-bold px-4 py-3 rounded-md" role="alert">
+                    <div className="flex items-center">
+                        <MdErrorOutline className="mr-2 text-xl" />
+                        <span>{alertError}</span>
+                    </div>
+                    <button onClick={() => { setIsMedicalImage(true) }} className="focus:outline-none">
+                        <MdClose className="text-xl" />
+                    </button>
+                </div>
+            </div>)}
 
             {isActive && <LoaderDiv loaderText={loaderText} />}
 

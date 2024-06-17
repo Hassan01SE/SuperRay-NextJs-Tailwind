@@ -5,6 +5,9 @@ import { useSession, status } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Loading from "../../loading";
 import { Card, Skeleton, Button } from "@nextui-org/react";
+import UnAuthorizeDiv from "../../components/UI/UnAuthorizedDiv";
+import MustLogin from "../../components/UI/MustLogin";
+
 
 const Report = () => {
     const router = useRouter();
@@ -27,7 +30,10 @@ const Report = () => {
                     setReports(response.data);
                 }
             } catch (error) {
+
                 setError(error.response);
+
+
             }
         };
 
@@ -47,6 +53,10 @@ const Report = () => {
     return (
         <div className="mt-20 pb-2 w-full flex flex-col min-h-screen">
             {status === 'loading' && <Loading />}
+
+            {/* {error && <p className="p4">Error: {error.statusText}</p>} */}
+
+            {error && <UnAuthorizeDiv error={error} />}
 
             {status === 'authenticated' && currentReports.length > 0 && (
                 <div className="flex flex-col max-h-full">
@@ -83,7 +93,7 @@ const Report = () => {
                 </div>
             )}
 
-            {status === 'authenticated' && reports.length === 0 && (
+            {status === 'authenticated' && !error && reports.length === 0 && (
                 <div className="h-screen flex flex-col w-full">
                     <h1 className="mt-4 font-semibold text-center capitalize text-4xl md:text-6xl">Your past reports</h1>
                     <div className="mt-4 px-2">No Reports Found</div>
@@ -91,10 +101,11 @@ const Report = () => {
             )}
 
             {status === 'unauthenticated' && (
-                <div className="h-screen">
-                    <p>Please sign in to view your past reports.</p>
-                </div>
+                <MustLogin />
             )}
+
+
+
         </div>
     );
 }

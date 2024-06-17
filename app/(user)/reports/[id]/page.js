@@ -12,8 +12,8 @@ import Image from 'next/image';
 import XrayPdf from '../../../components/XrayPDF';
 import { usePDF } from 'react-to-pdf';
 import ChatIcon from '../../../components/chat/ChatIcon';
-
-
+import UnAuthorizeDiv from "../../../components/UI/UnAuthorizedDiv";
+import MustLogin from "../../../components/UI/MustLogin";
 
 
 const ReportPage = () => {
@@ -71,7 +71,7 @@ const ReportPage = () => {
     return (
         <div className="mt-20 pb-4 w-full min-h-screen p-2">
 
-
+            {error && <UnAuthorizeDiv error={error} />}
 
             {/* {status === 'loading' && <Loading />} */}
 
@@ -97,10 +97,10 @@ const ReportPage = () => {
                 </div>
             }
 
-            {status === 'authenticated' && !report && <div>No report found </div>}
+            {status === 'authenticated' && !report && !error && <div>No report found </div>}
 
             {status === 'authenticated' && !report && !error && <p className="h-screen mt-20">Loading Report ..</p>}
-            {status === 'unauthenticated' && <p className="h-screen mt-20">Please sign in to view your past reports.</p>}
+            {status === 'unauthenticated' && <MustLogin />}
 
 
         </div>

@@ -17,11 +17,14 @@ import * as Yup from "yup";
 import axios from "axios";
 
 
+
 const Register = () => {
 
     const [registerbtndisable, setBtnDisable] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
     const toggleVisibility = () => setIsVisible(!isVisible);
+
+    /* const { errorMsg, setErrorMsg } = useState(); */
 
     const router = useRouter();
     const { data: session, status } = useSession();
@@ -29,6 +32,8 @@ const Register = () => {
     if (session) {
         router.push("/");
     }
+
+
 
 
     const initialValues = {
@@ -71,9 +76,15 @@ const Register = () => {
             console.error("Registration failed:", error);
             if (error.response.status === 500) {
                 alert('Server Error, try later!');
+                /*  error.response.statusText = 'Server Error, try later!'; */
+                //setErrorMsg(error.response);
+
             }
             else if (error.response.status === 400) {
                 alert('Bad Request, Username may already exist!');
+                /*  error.response.statusText = 'Bad Request, Username may already exist!'; */
+
+
             }
             else {
                 alert('Something went wrong..');
@@ -84,9 +95,15 @@ const Register = () => {
         }
     };
 
+
+
+
+
+
     return (
 
         <>
+
             <Formik
                 initialValues={initialValues}
                 validationSchema={validationSchema}

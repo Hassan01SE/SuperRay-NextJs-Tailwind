@@ -1,5 +1,10 @@
 
 import { Divider } from "@nextui-org/react";
+import Image from "next/image";
+
+import unskilledtechnicianimag from '../../public/unskilledtechnician.jpg';
+import problem3img from '../../public/inconsistentreport.jpg'
+import probimgscattered from '../../public/probimgscattered.jpg'
 
 const About = () => {
 
@@ -26,9 +31,49 @@ const About = () => {
 
                 <Divider className="my-2 mx-16  self-center  dark:bg-slate-400 bg-white"></Divider>
 
-                <div id="problemstatement" className=" mt-2 w-full h-unit-8xl">
+                <div id="problemstatement" className=" mt-2 mb-6 w-full min-h-screen ">
                     <h1 className=" text-4xl md:text-5xl  capitalize  font-semibold mt-2 text-center text-white">What problems does SuperRay solve?</h1>
 
+                    <div className="mt-4  flex flex-col xl:flex-row items-center justify-between ">
+
+
+                        <div id="problem2" className="flex flex-col w-[300px] lg:w-[400px] mt-4 rounded-md shadow-lg bg-gray-900 dark:bg-blue-900" >
+
+                            <div className="w-full h-1/2" >
+                                <Image className="w-[400px] rounded-md" src={unskilledtechnicianimag} />
+                            </div>
+
+                            <div className="w-full p-2 h-1/2">
+                                <h1 className="text-center text-4xl font-medium uppercase">Unskilled Technician</h1>
+                                <p className="text-center text-slate-200 mt-2 text-lg">Inconsistent quality of medical images due to varying levels of technician expertise can affect diagnosis accuracy.</p>
+                            </div>
+                        </div>
+
+                        <div id="problem1" className="flex flex-col w-[300px] lg:w-[400px] mt-4 rounded-md shadow-lg bg-gray-900 dark:bg-blue-900" >
+
+                            <div className="w-full h-1/2" >
+                                <Image className="w-[400px] rounded-md" src={probimgscattered} />
+                            </div>
+
+                            <div className="w-full p-2 h-1/2">
+                                <h1 className="text-center text-4xl font-medium uppercase">Scattered Radiation</h1>
+                                <p className="text-center text-slate-200 mt-2 text-lg">Scattered radiation can degrade the quality of medical images, making it difficult to obtain clear and accurate diagnostic images.</p>
+                            </div>
+                        </div>
+
+                        <div id="problem3" className="flex flex-col w-[300px] lg:w-[400px] mt-4 rounded-md shadow-lg bg-gray-900 dark:bg-blue-900" >
+
+                            <div className="w-full h-1/2" >
+                                <Image className="w-[400px] rounded-md" src={problem3img} />
+                            </div>
+
+                            <div className="w-full p-2 h-1/2">
+                                <h1 className="text-center text-4xl font-medium uppercase">Inconsistent Reports</h1>
+                                <p className="text-center text-slate-200 mt-2 text-lg">Variability in diagnostic reports due to human error and differing levels of experience among radiologists can impact patient outcomes.</p>
+                            </div>
+                        </div>
+
+                    </div>
 
                 </div>
 

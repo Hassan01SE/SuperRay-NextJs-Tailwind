@@ -386,7 +386,7 @@ export const Navbar = () => {
                     <li className=" mt-10 mr-2 self-end">
                         <Switch
                             className=" min-[1200px]:flex dark"
-                            defaultSelected={isDarkTheme}
+                            isSelected={isDarkTheme}
                             size="md"
                             color="primary"
                             startContent={<MoonIcon />}

@@ -110,7 +110,7 @@ const About = () => {
                         <Popover showArrow placement="top">
                             <PopoverTrigger>
                                 <div className="flex flex-col items-center justify-between cursor-pointer mt-6 lg:mt-32">
-                                    <Image className="w-24 rounded-full h-24 sm:w-48 sm:h-48 dark:border-black border-blue-500 border-3" src={sabihdp} />
+                                    <Image className="w-28 rounded-full h-28 sm:w-48 sm:h-48 dark:border-black border-blue-500 border-3" src={sabihdp} />
                                     <h1 className="text-slate-200 text-center text-3xl" >Sabih ur Rahman</h1>
                                     <p className="text-slate-300 text-center  text-lg">ML Developer</p>
                                 </div>
@@ -123,7 +123,7 @@ const About = () => {
                         <Popover showArrow placement="top">
                             <PopoverTrigger>
                                 <div className="flex  flex-col items-center justify-between cursor-pointer mt-6 lg:mt-0">
-                                    <Image className="w-24 rounded-full h-24 sm:w-48 sm:h-48 dark:border-black border-blue-500 border-3" src={hassandp} />
+                                    <Image className="w-28 rounded-full h-28 sm:w-48 sm:h-48 dark:border-black border-blue-500 border-3" src={hassandp} />
                                     <h1 className="text-slate-200 text-center text-3xl" >Hassan Sohail</h1>
                                     <p className="text-slate-300 text-center  text-lg">Full Stack Developer</p>
                                 </div>
@@ -136,7 +136,7 @@ const About = () => {
                         <Popover showArrow placement="top">
                             <PopoverTrigger>
                                 <div className="flex flex-col items-center justify-between cursor-pointer mt-6 lg:mt-32">
-                                    <Image className="w-24 rounded-full h-24 sm:w-48 sm:h-48 dark:border-black border-blue-500 border-3" src={jamaldp} />
+                                    <Image className="w-28 rounded-full h-28 sm:w-48 sm:h-48 dark:border-black border-blue-500 border-3" src={jamaldp} />
                                     <h1 className="text-slate-200 text-center text-3xl" >Jamal Khan</h1>
                                     <p className="text-slate-300 text-center  text-lg">ML Developer</p>
                                 </div>

@@ -1,12 +1,36 @@
 
 import { Divider } from "@nextui-org/react";
 import Image from "next/image";
-
+import Link from "next/link";
 import unskilledtechnicianimag from '../../public/unskilledtechnician.jpg';
 import problem3img from '../../public/inconsistentreport.jpg'
 import probimgscattered from '../../public/probimgscattered.jpg'
+import hassandp from '../../public/hassan.jpg'
+import sabihdp from '../../public/sabih.jpeg'
+import jamaldp from '../../public/jamal.jpeg'
+import { Popover, PopoverTrigger, PopoverContent } from "@nextui-org/react";
+import ConnectCard from '../components/UI/ConnectCard';
 
 const About = () => {
+
+
+    const hassaninfo = {
+        github: "https://github.com/Hassan01SE",
+        linkedin: "https://www.linkedin.com/in/hassansohail-software-engineer/",
+        mail: "hassansohail.se2001@gmail.com",
+    }
+
+    const sabihinfo = {
+        github: "https://github.com/Sabih-Rahman5",
+        linkedin: "https://www.linkedin.com/in/sabih-rahman/",
+        mail: "sabih.562@gmail.com",
+    }
+
+    const jamalinfo = {
+        github: "https://github.com/Jamal-Ahmed-Khan",
+        linkedin: "https://www.linkedin.com/in/jamal-ahmed-khan-619409117?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+        mail: "jamalaksuarez@gmail.com",
+    }
 
     return (
         <div className="w-full min-h-screen mt-20 mx-6  ">
@@ -78,8 +102,54 @@ const About = () => {
                 </div>
 
                 <Divider className="my-2 mx-16  self-center  dark:bg-slate-400 bg-white"></Divider>
-                <div id="team" className=" mt-2 w-full h-unit-8xl">
-                    <h1 className=" text-5xl md:text-6xl  font-semibold mt-2 text-center text-white">Our Team</h1>
+                <div id="team" className=" mt-2 w-full min-h-screen">
+                    <h1 className=" text-5xl md:text-6xl font-semibold mt-2 text-center text-white">Our Team</h1>
+
+                    <div className="flex flex-col lg:flex-row items-center justify-between px-8" >
+
+                        <Popover showArrow placement="top">
+                            <PopoverTrigger>
+                                <div className="flex flex-col items-center justify-between cursor-pointer mt-6 lg:mt-32">
+                                    <Image className="w-24 rounded-full h-24 sm:w-48 sm:h-48 dark:border-black border-blue-500 border-3" src={sabihdp} />
+                                    <h1 className="text-slate-200 text-center text-3xl" >Sabih ur Rahman</h1>
+                                    <p className="text-slate-300 text-center  text-lg">ML Developer</p>
+                                </div>
+                            </PopoverTrigger>
+                            <PopoverContent className=" dark:bg-blue-950 bg-gray-900">
+                                <ConnectCard member={sabihinfo} />
+                            </PopoverContent>
+                        </Popover>
+
+                        <Popover showArrow placement="top">
+                            <PopoverTrigger>
+                                <div className="flex  flex-col items-center justify-between cursor-pointer mt-6 lg:mt-0">
+                                    <Image className="w-24 rounded-full h-24 sm:w-48 sm:h-48 dark:border-black border-blue-500 border-3" src={hassandp} />
+                                    <h1 className="text-slate-200 text-center text-3xl" >Hassan Sohail</h1>
+                                    <p className="text-slate-300 text-center  text-lg">Full Stack Developer</p>
+                                </div>
+                            </PopoverTrigger>
+                            <PopoverContent className="p-1 dark:bg-blue-950 bg-gray-900">
+                                <ConnectCard member={hassaninfo} />
+                            </PopoverContent>
+                        </Popover>
+
+                        <Popover showArrow placement="top">
+                            <PopoverTrigger>
+                                <div className="flex flex-col items-center justify-between cursor-pointer mt-6 lg:mt-32">
+                                    <Image className="w-24 rounded-full h-24 sm:w-48 sm:h-48 dark:border-black border-blue-500 border-3" src={jamaldp} />
+                                    <h1 className="text-slate-200 text-center text-3xl" >Jamal Khan</h1>
+                                    <p className="text-slate-300 text-center  text-lg">ML Developer</p>
+                                </div>
+                            </PopoverTrigger>
+                            <PopoverContent className="p-1 dark:bg-blue-950 bg-gray-900">
+                                <ConnectCard member={jamalinfo} />
+                            </PopoverContent>
+                        </Popover>
+
+                    </div>
+
+
+
                 </div>
 
             </div>

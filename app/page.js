@@ -57,7 +57,7 @@ export default function Home() {
           </p>
 
           <button type="button" className="mt-4 self-center font-semibold bg-gradient-to-r from-[#F4A261] to-[#E76F51] hover:from-[#E76F51] hover:to-[#F4A261] hover:border-white hover:border-2 rounded-md w-3/4 h-12 sm:self-start sm:mt-6 sm:w-60 sm:h-14 md:text-xl focus:outline-none ">
-            <Link href='/detect'>
+            <Link href='/upload'>
               Detect Fractures
             </Link>
           </button>

@@ -93,7 +93,7 @@ const ReportPage = () => {
                         </div>
 
                     </section>
-                    <ChatIcon />
+                    <ChatIcon report={report} />
                 </div>
             }
 

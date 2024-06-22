@@ -2,16 +2,17 @@ import { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 import { FaTimes } from 'react-icons/fa';
 
-const ChatBox = ({ closeChat }) => {
+const ChatBox = ({ closeChat, report }) => {
     const [message, setMessage] = useState('');
     const [chat, setChat] = useState([]);
     const chatEndRef = useRef(null);
+    const [ackClient, setAckClient] = useState(0);
 
     useEffect(() => {
         chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
     }, [message]);
 
-    const handleSend = async () => {
+    /* const handleSend = async () => {
         if (message.trim()) {
             setChat([...chat, { sender: 'user', text: message }]);
             setMessage('');
@@ -19,6 +20,42 @@ const ChatBox = ({ closeChat }) => {
             try {
                 const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}chat/`, { message });
                 setChat([...chat, { sender: 'user', text: message }, { sender: 'bot', text: response.data.message }]);
+            } catch (error) {
+                console.error('Error:', error);
+                setChat([...chat, { sender: 'user', text: message }, { sender: 'bot', text: 'Error in fetching response' }]);
+            }
+        }
+    }; */
+
+    const handleSend = async () => {
+        if (message.trim()) {
+            setChat([...chat, { sender: 'user', text: message }]);
+            setMessage('');
+
+            const formData = new FormData();
+            formData.append('prompt', message);
+            formData.append('report', report.diagnose);
+            formData.append('ack_client', ackClient);
+
+            if (ackClient == 0) {
+                formData.append('image', process.env.NEXT_PUBLIC_IMAGE_URL + report.image);
+            }
+
+            try {
+                const response = await axios.post(
+                    `${process.env.NEXT_PUBLIC_BACKEND_URL}chat/`,
+                    formData,
+                    {
+                        headers: {
+                            'Content-Type': 'multipart/form-data'
+                        }
+                    }
+                );
+
+                setChat([...chat, { sender: 'user', text: message }, { sender: 'bot', text: response.data.response }]);
+                if (response.data.ack === 1) {
+                    setAckClient(1); // Update ack_client based on the response
+                }
             } catch (error) {
                 console.error('Error:', error);
                 setChat([...chat, { sender: 'user', text: message }, { sender: 'bot', text: 'Error in fetching response' }]);

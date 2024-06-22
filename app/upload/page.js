@@ -23,6 +23,7 @@ const Upload = () => {
 
     const [generatedImage, setGeneratedImage] = useState(null);
     const [diagnoseReport, setGeneratedDiagnose] = useState(null);
+    const [domain, setDomain] = useState(null);
     const [isActive, setActive] = useState(false);
     const [file, setFile] = useState(null);
     const [isButtonDisabled, setIsButtonDisabled] = useState(true);
@@ -63,6 +64,7 @@ const Upload = () => {
             setloadertext('Your Report has been generated!');
             setGeneratedImage(response.data.image);
             setGeneratedDiagnose(response.data.xreport);
+            setDomain(response.data.domain);
             onOpen();
             setIsMedicalImage(true);
             console.log(response.data); // Assuming the response is the generated image
@@ -109,6 +111,7 @@ const Upload = () => {
             const formData = new FormData();
             formData.append('image', file);
             formData.append('diagnose', diagnoseReport);
+            formData.append('domain', domain);
 
             const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}save-report`, formData, {
                 headers: {
@@ -172,7 +175,7 @@ const Upload = () => {
                                 {status === 'authenticated' &&
                                     <>
                                         <button onClick={saveReport} className=" w-full inline-block rounded bg-blue-700 px-6 pb-2 pt-2.5 text-lg font-medium  leading-normal text-white shadow-info-3 transition duration-150 ease-in-out hover:bg-info-accent-300 hover:shadow-info-2 focus:bg-info-accent-300 focus:shadow-info-2 focus:outline-none focus:ring-0 active:bg-info-600 active:shadow-info-2 motion-reduce:transition-none dark:shadow-black/30 dark:hover:shadow-dark-strong dark:focus:shadow-dark-strong dark:active:shadow-dark-strong" onPress={onClose}>
-                                            View
+                                            {viewBtn}
                                         </button>
                                         {/*  <button className="w-1/2 inline-block rounded bg-danger px-6 pb-2 pt-2.5 text-sm md:text-lg font-medium  leading-normal text-white shadow-warning-3 transition duration-150 ease-in-out hover:bg-danger-accent-300 hover:shadow-warning-2 focus:bg-danger-accent-300 focus:shadow-danger-2 focus:outline-none focus:ring-0 active:bg-danger-600 active:shadow-warning-2 motion-reduce:transition-none dark:shadow-black/30 dark:hover:shadow-dark-strong dark:focus:shadow-dark-strong dark:active:shadow-dark-strong">
                                             Download PDF

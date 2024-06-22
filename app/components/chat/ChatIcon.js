@@ -3,7 +3,7 @@ import { FaRobot } from 'react-icons/fa';
 import ChatBox from './ChatBox';
 import { Tooltip } from "@nextui-org/tooltip";
 
-const ChatIcon = () => {
+const ChatIcon = ({ report }) => {
     const [isOpen, setIsOpen] = useState(false);
 
     const toggleChat = () => {
@@ -19,7 +19,7 @@ const ChatIcon = () => {
                     </button>
                 </Tooltip>
             </div>
-            {isOpen && <ChatBox closeChat={toggleChat} />}
+            {isOpen && <ChatBox report={report} closeChat={toggleChat} />}
         </div>
     );
 };

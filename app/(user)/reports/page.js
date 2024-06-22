@@ -78,12 +78,12 @@ const Report = () => {
                         {currentReports.map((report) => (
                             <div key={report.id} className="mt-4 flex flex-row justify-between items-center dark:bg-white bg-black max-w-xl rounded-lg border dark:border-gray-200 border-slate-600 px-5 py-2 shadow-md">
                                 <div className="relative overflow-hidden rounded-md w-1/4">
-                                    <img src={`http://127.0.0.1:8000${report.image}`} alt="report img" className="mb-2 w-full h-32 rounded-md hover:scale-105 hover:cursor-pointer transition duration-300 ease-in-out" />
+                                    <img src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${report.image}`} alt="report img" className="mb-2 w-full h-32 rounded-md hover:scale-105 hover:cursor-pointer transition duration-300 ease-in-out" />
                                 </div>
                                 <div className="w-[60%]">
-                                    <h2 className="mb-2 text-2xl font-bold tracking-tight text-white dark:text-gray-900">Xray Report #{report.id}</h2>
+                                    <h2 className="mb-2 text-2xl font-bold tracking-tight text-white dark:text-gray-900">Medical Report #{report.id}</h2>
                                     <div className="flex flex-col items-start">
-                                        <p className="mb-3 text-slate-300 dark:text-gray-700">{report.diagnose}</p>
+                                        <p className="mb-3 text-slate-300 dark:text-gray-700">{report.domain}</p>
                                         <button onClick={() => handleReportView(report.id)} className="font-semibold bg-gradient-to-r from-[#F4A261] to-[#E76F51] hover:from-[#E76F51] hover:to-[#F4A261] hover:dark:border-slate-500 hover:border-white hover:border-2 rounded-md w-1/2 h-10 sm:w-3/5 sm:h-10 md:text-lg focus:outline-none">View</button>
                                     </div>
                                 </div>

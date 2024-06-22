@@ -15,7 +15,7 @@ const XrayPDF = ({ report, createdDate, createdTime }) => {
 
                 <div className="flex flex-col md:w-[40%]">
                     <img src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${report.image}`} className=" w-[200px] md:w-[350px]" alt="report img" />
-                    <h1 className="capitalize text-start text-sm md:text-xl font-medium text-slate-800">Upscaled Xray image</h1>
+                    <h1 className="capitalize text-start text-sm md:text-xl font-medium text-slate-800">Upscaled {report.domain} image</h1>
                 </div>
 
                 <div className="md:w-1/2">

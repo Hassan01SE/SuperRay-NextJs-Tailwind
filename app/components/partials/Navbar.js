@@ -98,14 +98,14 @@ export const Navbar = () => {
             name: "Home",
             link: "/",
         },
+        /*  {
+             id: 2,
+             name: "Fracture Detection",
+             link: "/detect"
+         }, */
         {
             id: 2,
-            name: "Fracture Detection",
-            link: "/detect"
-        },
-        {
-            id: 3,
-            name: "Generate X-Ray Report",
+            name: "Generate Medical Report",
             link: "/upload"
         },
         /* {
@@ -114,7 +114,7 @@ export const Navbar = () => {
             link: 'reports'
         }, */
         {
-            id: 4,
+            id: 3,
             name: "About",
             link: '/about'
         },
@@ -170,14 +170,14 @@ export const Navbar = () => {
             name: <div className="flex flex-row"> <FaHome className="mr-2" /> <span>Home</span> </div>,
             link: "/",
         },
-        {
+        /* {
             id: 2,
             name: <div className="flex flex-row"> <FaXRay className="mr-2 mt-1" /> <span>Fracture Detection</span> </div>,
             link: "/detect"
-        },
+        }, */
         {
             id: 3,
-            name: <div className="flex flex-row"> <FaFileMedical className="mr-2 mt-1" /> <span>Generate X-Ray Report</span> </div>,
+            name: <div className="flex flex-row"> <FaFileMedical className="mr-2 mt-1" /> <span>Generate Medical Report</span> </div>,
             link: "/upload"
         },
         {
@@ -208,14 +208,14 @@ export const Navbar = () => {
             name: <div className="flex flex-row"> <FaHome className="mr-2" /> <span>Home</span> </div>,
             link: "/",
         },
-        {
+        /* {
             id: 2,
             name: <div className="flex flex-row"> <FaXRay className="mr-2 mt-1" /> <span>Fracture Detection</span> </div>,
             link: "/detect"
-        },
+        }, */
         {
             id: 3,
-            name: <div className="flex flex-row"> <FaFileMedical className="mr-2 mt-1" /> <span>Generate X-Ray Report</span> </div>,
+            name: <div className="flex flex-row"> <FaFileMedical className="mr-2 mt-1" /> <span>Generate Medical Report</span> </div>,
             link: "/upload"
         },
         /* {

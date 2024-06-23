@@ -177,7 +177,7 @@ export const Navbar = () => {
         }, */
         {
             id: 3,
-            name: <div className="flex flex-row"> <FaFileMedical className="mr-2 mt-1" /> <span>Generate Medical Report</span> </div>,
+            name: <div className="flex flex-row"> <FaFileMedical className="mr-2 mt-1" /> <span>Generate Report</span> </div>,
             link: "/upload"
         },
         {
@@ -215,7 +215,7 @@ export const Navbar = () => {
         }, */
         {
             id: 3,
-            name: <div className="flex flex-row"> <FaFileMedical className="mr-2 mt-1" /> <span>Generate Medical Report</span> </div>,
+            name: <div className="flex flex-row"> <FaFileMedical className="mr-2 mt-1" /> <span>Generate Report</span> </div>,
             link: "/upload"
         },
         /* {

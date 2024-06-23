@@ -86,6 +86,7 @@ const Upload = () => {
             setFile(null);
             setFileDrop(false);
             setloadertext('Generating your report ...');
+
         }
     };
 
@@ -158,23 +159,18 @@ const Upload = () => {
                 <ModalContent>
                     {(onClose) => (
                         <div className="flex flex-col items-center dark:bg-black bg-[#000210]">
-                            <ModalHeader className="flex text-3xl flex-col gap-1">XRay Report</ModalHeader>
-                            <Image className="mt-2 self-center mb-2 w-[300px] md:w[450px]" width={300} height={300} src={`data:image/jpeg;base64,${generatedImage}`} alt="xray img" />
+                            <ModalHeader className="flex text-3xl flex-col gap-1">Medical Report</ModalHeader>
+                            <Image className="mt-2 self-center mb-2 w-[300px] md:w[450px]" width={300} height={300} src={`data:image/jpeg;base64,${generatedImage}`} alt="medical img" />
                             <ModalBody >
-                                <p>
-                                    <span className="font-bold">AI Diagnose:</span> {diagnoseReport}
+                                <p className=" overflow-y-hidden max-h-24">
+                                    <span className="font-bold">AI Diagnose:</span> {diagnoseReport} ...
                                 </p>
-                                {/* <p>
-                                    <span className="font-bold">Indication:</span> Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe maiores fuga ullam nihil eum dolorum illum incidunt porro facere, repudiandae deserunt.
-                                </p>
-                                <p>
-                                    <span className="font-bold">Findings:</span> Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe maiores fuga ullam nihil eum dolorum illum incidunt porro facere, repudiandae deserunt.
-                                </p> */}
+
                             </ModalBody>
                             <ModalFooter className="w-1/2">
                                 {status === 'authenticated' &&
                                     <>
-                                        <button onClick={saveReport} className=" w-full inline-block rounded bg-blue-700 px-6 pb-2 pt-2.5 text-lg font-medium  leading-normal text-white shadow-info-3 transition duration-150 ease-in-out hover:bg-info-accent-300 hover:shadow-info-2 focus:bg-info-accent-300 focus:shadow-info-2 focus:outline-none focus:ring-0 active:bg-info-600 active:shadow-info-2 motion-reduce:transition-none dark:shadow-black/30 dark:hover:shadow-dark-strong dark:focus:shadow-dark-strong dark:active:shadow-dark-strong" onPress={onClose}>
+                                        <button onClick={saveReport} className=" w-full inline-block rounded bg-gradient-to-r from-[#F4A261] to-[#E76F51] hover:from-[#E76F51] hover:to-[#F4A261] px-6 pb-2 pt-2.5 text-lg font-medium  leading-normal text-white shadow-info-3 transition duration-150 ease-in-out hover:bg-info-accent-300 hover:shadow-info-2 focus:bg-info-accent-300 focus:shadow-info-2 focus:outline-none focus:ring-0 active:bg-info-600 active:shadow-info-2 motion-reduce:transition-none dark:shadow-black/30 dark:hover:shadow-dark-strong dark:focus:shadow-dark-strong dark:active:shadow-dark-strong" onPress={onClose}>
                                             {viewBtn}
                                         </button>
                                         {/*  <button className="w-1/2 inline-block rounded bg-danger px-6 pb-2 pt-2.5 text-sm md:text-lg font-medium  leading-normal text-white shadow-warning-3 transition duration-150 ease-in-out hover:bg-danger-accent-300 hover:shadow-warning-2 focus:bg-danger-accent-300 focus:shadow-danger-2 focus:outline-none focus:ring-0 active:bg-danger-600 active:shadow-warning-2 motion-reduce:transition-none dark:shadow-black/30 dark:hover:shadow-dark-strong dark:focus:shadow-dark-strong dark:active:shadow-dark-strong">

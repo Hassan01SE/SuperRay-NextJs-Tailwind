@@ -21,11 +21,12 @@ const ReportPage = () => {
     const router = useRouter();
     const { id } = useParams();
     const [report, setReport] = useState(null);
+    const [loadText, setLoadText] = useState('Loading ..');
     const [error, setError] = useState(null);
     const [createdDate, setCreatedDate] = useState();
     const [createdTime, setCreatedTime] = useState();
 
-    const { toPDF, targetRef } = usePDF({ filename: 'xrayreport.pdf' });
+    const { toPDF, targetRef } = usePDF({ filename: 'medicalreport.pdf' });
 
     useEffect(() => {
         const fetchReport = async () => {
@@ -68,6 +69,14 @@ const ReportPage = () => {
     }
 
 
+    setTimeout(() => {
+        if (status === 'authenticated' && !error && !report) {
+            setLoadText('No Reports Found!')
+        }
+    }, 10000)
+
+
+
     return (
         <div className="mt-20 pb-4 w-full min-h-screen p-2">
 
@@ -97,9 +106,9 @@ const ReportPage = () => {
                 </div>
             }
 
-            {status === 'authenticated' && !report && !error && <div>No report found </div>}
 
-            {status === 'authenticated' && !report && !error && <p className="h-screen mt-20">Loading Report ..</p>}
+
+            {status === 'authenticated' && !report && !error && <p className="h-screen mt-20">{loadText}</p>}
             {status === 'unauthenticated' && <MustLogin />}
 
 

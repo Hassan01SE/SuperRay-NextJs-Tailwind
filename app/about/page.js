@@ -1,4 +1,4 @@
-
+'use client'
 import { Divider } from "@nextui-org/react";
 import Image from "next/image";
 import Link from "next/link";
@@ -10,8 +10,16 @@ import sabihdp from '../../public/sabih.jpeg'
 import jamaldp from '../../public/jamal.jpeg'
 import { Popover, PopoverTrigger, PopoverContent } from "@nextui-org/react";
 import ConnectCard from '../components/UI/ConnectCard';
+import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
 
 const About = () => {
+
+    const [isFlipped, setIsFlipped] = useState(false);
+
+    const handleFlip = () => {
+        setIsFlipped(!isFlipped);
+    };
 
 
     const hassaninfo = {
@@ -61,7 +69,7 @@ const About = () => {
                     <div className="mt-4  flex flex-col xl:flex-row items-center justify-between ">
 
 
-                        <div id="problem2" className="flex flex-col w-[300px] lg:w-[400px] mt-4 rounded-md shadow-lg bg-gray-900 dark:bg-blue-900" >
+                        <div id="problem1" className="flex flex-col w-[300px] lg:w-[400px] mt-4 rounded-md shadow-lg bg-gray-900 dark:bg-blue-900" >
 
                             <div className="w-full h-1/2" >
                                 <Image className="w-[400px] rounded-md" src={unskilledtechnicianimag} />
@@ -73,7 +81,8 @@ const About = () => {
                             </div>
                         </div>
 
-                        <div id="problem1" className="flex flex-col w-[300px] lg:w-[400px] mt-4 rounded-md shadow-lg bg-gray-900 dark:bg-blue-900" >
+
+                        <div id="problem2" className="flex flex-col w-[300px] lg:w-[400px] mt-4 rounded-md shadow-lg bg-gray-900 dark:bg-blue-900" >
 
                             <div className="w-full h-1/2" >
                                 <Image className="w-[400px] rounded-md" src={probimgscattered} />

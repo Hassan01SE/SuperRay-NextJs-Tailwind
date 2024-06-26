@@ -1,7 +1,7 @@
 import logo from "../../public/srblue.png"
 import Image from 'next/image';
 
-const XrayPDF = ({ report, createdDate, createdTime }) => {
+const ReportPDF = ({ report, createdDate, createdTime }) => {
 
 
     return (
@@ -29,4 +29,4 @@ const XrayPDF = ({ report, createdDate, createdTime }) => {
     );
 }
 
-export default XrayPDF;
+export default ReportPDF;

@@ -2,6 +2,7 @@ import React from 'react'
 import Logo from '../../../public/logo.png'
 import Image from 'next/image'
 import Link from "next/link";
+import { FaLinkedin, FaGithub } from 'react-icons/fa';
 
 export const Footer = () => {
     return (
@@ -14,6 +15,7 @@ export const Footer = () => {
                         <Image src={Logo} className="w-64" alt="SuperRay Logo" />
                         {/* <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">SuperRay</span> */}
                     </Link>
+
                     <ul className="flex flex-wrap items-center mb-6 text-sm font-medium text-white sm:mb-0 ">
                         <li>
                             <Link href="/about" className="hover:underline me-4 md:me-6">About</Link>
@@ -28,6 +30,7 @@ export const Footer = () => {
                             <Link href="/contact" className="hover:underline">Contact Us</Link>
                         </li>
                     </ul>
+
                 </div>
                 <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
                 <span className="block text-sm flex-col  sm:text-center dark:text-gray-400 text-white">© 2024 <Link href="/" className="hover:underline">SuperRay™</Link> <span className='ml-2'> All Rights Reserved.</span></span>

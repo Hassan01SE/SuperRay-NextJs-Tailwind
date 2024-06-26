@@ -163,8 +163,10 @@ const Upload = () => {
                             <Image className="mt-2 self-center mb-2 w-[300px] md:w[450px]" width={300} height={300} src={`data:image/jpeg;base64,${generatedImage}`} alt="medical img" />
                             <ModalBody >
                                 <p className=" overflow-y-hidden max-h-24">
-                                    <span className="font-bold">AI Diagnose:</span> {diagnoseReport} ...
+                                    <span className="font-bold">AI Diagnose:</span> {diagnoseReport} ..
                                 </p>
+
+                                <p className="mt-2 font-bold capitalize">NOTE: {status === 'authenticated' ? "[SAVE TO VIEW DETAILED REPORT AND HAVE ACCESS TO AI QUERY BOT]" : "[Sign In to save reports and have access to the AI Query Bot]"}</p>
 
                             </ModalBody>
                             <ModalFooter className="w-1/2">

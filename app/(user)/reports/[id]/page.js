@@ -9,7 +9,7 @@ import DocumentIcon from "../../../components/icons/DocumentIcon";
 import { GrDownload } from "react-icons/gr";
 import logo from "../../../../public/srblue.png";
 import Image from 'next/image';
-import XrayPdf from '../../../components/XrayPDF';
+import ReportPdf from '../../../components/ReportPDF';
 import { usePDF } from 'react-to-pdf';
 import ChatIcon from '../../../components/chat/ChatIcon';
 import UnAuthorizeDiv from "../../../components/UI/UnAuthorizedDiv";
@@ -97,8 +97,8 @@ const ReportPage = () => {
 
                     <section id="report-content" className="w-full  flex flex-col items-center mt-4 xl:mt-0">
 
-                        <div ref={targetRef} className="flex max-h-[600px] flex-col items-center">
-                            <XrayPdf report={report} createdDate={createdDate} createdTime={createdTime} />
+                        <div ref={targetRef} className="flex min-h-screen max-h-[600px] flex-col items-center">
+                            <ReportPdf report={report} createdDate={createdDate} createdTime={createdTime} />
                         </div>
 
                     </section>

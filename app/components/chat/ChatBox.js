@@ -7,6 +7,7 @@ const ChatBox = ({ closeChat, report }) => {
     const [chat, setChat] = useState([]);
     const chatEndRef = useRef(null);
     const [ackClient, setAckClient] = useState(0);
+    const [isMsgSent, setIsMsgSent] = useState(false);
 
     useEffect(() => {
         chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -32,13 +33,16 @@ const ChatBox = ({ closeChat, report }) => {
             setChat([...chat, { sender: 'user', text: message }]);
             setMessage('');
 
+            setIsMsgSent(true);
+
             const formData = new FormData();
             formData.append('prompt', message);
             formData.append('report', report.diagnose);
             formData.append('ack_client', ackClient);
 
             if (ackClient == 0) {
-                formData.append('image', process.env.NEXT_PUBLIC_IMAGE_URL + report.image);
+                /* formData.append('image', process.env.NEXT_PUBLIC_IMAGE_URL + report.image); */
+                formData.append('image', report.id);
             }
 
             try {
@@ -52,13 +56,19 @@ const ChatBox = ({ closeChat, report }) => {
                     }
                 );
 
+                setIsMsgSent(false);
+
                 setChat([...chat, { sender: 'user', text: message }, { sender: 'bot', text: response.data.response }]);
                 if (response.data.ack === 1) {
                     setAckClient(1); // Update ack_client based on the response
                 }
             } catch (error) {
                 console.error('Error:', error);
+                setIsMsgSent(false);
                 setChat([...chat, { sender: 'user', text: message }, { sender: 'bot', text: 'Error in fetching response' }]);
+            }
+            finally {
+                setIsMsgSent(false);
             }
         }
     };
@@ -71,12 +81,18 @@ const ChatBox = ({ closeChat, report }) => {
             </div>
             <div className="flex-1 overflow-y-auto mt-2 space-y-2">
                 {chat.map((entry, index) => (
+
                     <div key={index} className={`flex ${entry.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
                         <div className={`p-2 rounded-lg ${entry.sender === 'user' ? 'bg-blue-500 text-white' : 'bg-gray-700 text-white'}`}>
                             {entry.text}
                         </div>
                     </div>
+
+
                 ))}
+
+                {isMsgSent && <div className='p-2 mt-2 space-y-2 rounded-lg justify-start bg-gray-700 text-white animate-pulse'>A response is being generated ..</div>}
+
                 <div ref={chatEndRef} />
             </div>
             <div className="pt-2 border-t border-gray-700">

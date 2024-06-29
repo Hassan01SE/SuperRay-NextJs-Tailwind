@@ -29,6 +29,7 @@ const LoginForm = () => {
     const [isVisible, setIsVisible] = React.useState(false);
     const toggleVisibility = () => setIsVisible(!isVisible);
     const [isCredError, setCredError] = useState(false);
+    const [loginErrorMsg, setLoginErrorMsg] = useState(null);
 
     const handleSignIn = async (e) => {
         e.preventDefault();
@@ -48,6 +49,7 @@ const LoginForm = () => {
             // Handle sign-in error
             //alert(result.error);
             setCredError(true);
+            setLoginErrorMsg(result.error);
             setUsernameInValid(true);
             console.error("Sign-in error:", result.error);
         }
@@ -69,7 +71,7 @@ const LoginForm = () => {
                 </svg>
                 <span class="sr-only">Info</span>
                 <div>
-                    <span class="font-medium">Alert!</span> Incorrect Credentials!
+                    <span class="font-medium">Alert!</span> {loginErrorMsg}
                 </div>
             </div>}
 

@@ -13,10 +13,15 @@ import { useRouter } from "next/navigation";
 import { Modal, ModalContent, Button, ModalHeader, ModalBody, ModalFooter, useDisclosure } from "@nextui-org/react";
 import { MdErrorOutline, MdClose } from "react-icons/md";
 
+import useAxiosAuth from "../../utils/hooks/useAxiosAuth";
+
+
 
 const fileTypes = ["JPG", "PNG", "JPEG"];
 
 const Upload = () => {
+
+    const axiosAuth = useAxiosAuth();
 
     const router = useRouter();
     const { data: session, status } = useSession();
@@ -114,10 +119,15 @@ const Upload = () => {
             formData.append('diagnose', diagnoseReport);
             formData.append('domain', domain);
 
-            const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}save-report`, formData, {
+            /* const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}save-report`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     'Authorization': `JWT ${accessToken}`
+                }
+            }); */
+            const response = await axiosAuth.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}save-report`, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
                 }
             });
             // Handle success response
@@ -127,9 +137,12 @@ const Upload = () => {
         } catch (error) {
             // Handle error
             console.error('Error saving report:', error);
+            setAlertError("Due to some problem, report cannot be saved!");
+            setIsMedicalImage(false);
+            onClose();
         }
         finally {
-            setViewBtn('Save Report');
+            setViewBtn('Redirecting ..');
         }
     };
 

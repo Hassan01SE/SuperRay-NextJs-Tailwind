@@ -14,9 +14,13 @@ import { usePDF } from 'react-to-pdf';
 import ChatIcon from '../../../components/chat/ChatIcon';
 import UnAuthorizeDiv from "../../../components/UI/UnAuthorizedDiv";
 import MustLogin from "../../../components/UI/MustLogin";
+import useAxiosAuth from "../../../../utils/hooks/useAxiosAuth";
+import { PDFDownloadLink } from '@react-pdf/renderer';
+import ReportDocument from "../../../components/ReportDocument";
 
 
 const ReportPage = () => {
+    const axiosAuth = useAxiosAuth();
     const { data: session, status } = useSession();
     const router = useRouter();
     const { id } = useParams();
@@ -26,7 +30,7 @@ const ReportPage = () => {
     const [createdDate, setCreatedDate] = useState();
     const [createdTime, setCreatedTime] = useState();
 
-    const { toPDF, targetRef } = usePDF({ filename: 'medicalreport.pdf' });
+    const { toPDF, targetRef } = usePDF({ filename: `medicalreport.pdf` });
 
     useEffect(() => {
         const fetchReport = async () => {
@@ -34,11 +38,12 @@ const ReportPage = () => {
                 try {
                     if (status === 'authenticated') {
                         const accessToken = session.user.access;
-                        const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}reports/${id}`, {
+                        /* const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}reports/${id}`, {
                             headers: {
                                 Authorization: `JWT ${accessToken}`,
                             },
-                        });
+                        }); */
+                        const response = await axiosAuth.get(`reports/${id}`);
                         const dateCreated = new Date(response.data.date);
                         const formattedDate = `${dateCreated.toLocaleDateString("en-US", {
                             year: "numeric",
@@ -92,12 +97,15 @@ const ReportPage = () => {
                     </Breadcrumbs>
 
                     <div className="w-full mt-2 flex flex-row justify-end">
-                        <button onClick={() => toPDF()} className=" mr-1 w-48 inline-block rounded bg-danger px-4 py-2  text-sm md:text-lg font-medium  leading-normal text-white shadow-warning-3 transition duration-150 ease-in-out hover:bg-danger-accent-300 hover:shadow-warning-2 focus:bg-danger-accent-300 focus:shadow-danger-2 focus:outline-none focus:ring-0 active:bg-danger-600 active:shadow-warning-2 motion-reduce:transition-none dark:shadow-black/30 dark:hover:shadow-dark-strong dark:focus:shadow-dark-strong dark:active:shadow-dark-strong"> <div className="flex justify-between"> <span> Download PDF</span> <GrDownload className="mt-1" /></div> </button>
+                        <button onClick={() => toPDF()} className="hidden  mr-1 w-48 md:inline-block rounded bg-danger px-4 py-2  text-sm md:text-lg font-medium  leading-normal text-white shadow-warning-3 transition duration-150 ease-in-out hover:bg-danger-accent-300 hover:shadow-warning-2 focus:bg-danger-accent-300 focus:shadow-danger-2 focus:outline-none focus:ring-0 active:bg-danger-600 active:shadow-warning-2 motion-reduce:transition-none dark:shadow-black/30 dark:hover:shadow-dark-strong dark:focus:shadow-dark-strong dark:active:shadow-dark-strong"> <div className="flex justify-between"> <span> Download PDF</span> <GrDownload className="mt-1" /></div> </button>
+                        <button className="mr-1 md:hidden w-48 inline-block rounded bg-danger px-4 py-2  text-sm md:text-lg font-medium  leading-normal text-white shadow-warning-3 transition duration-150 ease-in-out hover:bg-danger-accent-300 hover:shadow-warning-2 focus:bg-danger-accent-300 focus:shadow-danger-2 focus:outline-none focus:ring-0 active:bg-danger-600 active:shadow-warning-2 motion-reduce:transition-none dark:shadow-black/30 dark:hover:shadow-dark-strong dark:focus:shadow-dark-strong dark:active:shadow-dark-strong"> <div className="flex justify-between"> <PDFDownloadLink document={<ReportDocument report={report} createdTime={createdTime} createdDate={createdDate} />} fileName="medicalreport.pdf" >
+                            {({ blob, url, loading, error }) => (loading ? 'Loading document...' : 'Download PDF')}
+                        </PDFDownloadLink> <GrDownload className="mt-1" /></div> </button>
                     </div>
 
                     <section id="report-content" className="w-full  flex flex-col items-center mt-4 xl:mt-0">
 
-                        <div ref={targetRef} className="flex min-h-screen max-h-[600px] flex-col items-center">
+                        <div ref={targetRef} className="flex min-h-screen  flex-col items-center">
                             <ReportPdf report={report} createdDate={createdDate} createdTime={createdTime} />
                         </div>
 

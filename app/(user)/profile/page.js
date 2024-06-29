@@ -1,5 +1,6 @@
 'use client'
-import axios from "axios";
+//import axios from "axios";
+import axios from "../../../utils/axios";
 import { useState, useEffect } from "react";
 import { useSession, status } from "next-auth/react";
 import { useRouter } from "next/navigation";
@@ -10,10 +11,11 @@ import Link from "next/link";
 import { MdEdit, MdSave } from "react-icons/md";
 import UnAuthorizeDiv from "../../components/UI/UnAuthorizedDiv";
 import MustLogin from "../../components/UI/MustLogin";
+import useAxiosAuth from "../../../utils/hooks/useAxiosAuth";
 
 const Profile = () => {
 
-
+    const axiosAuth = useAxiosAuth();
     const [userData, setUserData] = useState(null);
     const [error, setError] = useState(null);
     const [joinedDate, setJoinedDate] = useState(null);
@@ -26,11 +28,12 @@ const Profile = () => {
             try {
                 if (status === 'authenticated') {
                     const accessToken = session.user.access;
-                    const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}profile/`, {
+                    /* const response = await axios.get(`profile/`, {
                         headers: {
                             Authorization: `JWT ${accessToken}`,
                         },
-                    });
+                    }); */
+                    const response = await axiosAuth.get(`profile/`);
                     const dateJoined = new Date(response.data.date_joined);
                     const formattedDate = `${dateJoined.toLocaleDateString("en-US", {
                         year: "numeric",
@@ -39,7 +42,8 @@ const Profile = () => {
                     })}`;
                     setJoinedDate(formattedDate);
                     setUserData(response.data); // Assuming response.data contains user information
-                    console.log(userData);
+                    //console.log(userData);
+                    setError(null);
                 }
             } catch (error) {
                 setError(error.response); // Assuming the error message is provided by the server
@@ -54,10 +58,13 @@ const Profile = () => {
          router.push('/');
      } */
 
+    if (status === 'loading') {
+        return (<Loading />)
+    }
 
     return (
         <div className="mt-20 min-h-screen w-full">
-            {status === 'loading' && <Loading />}
+            {/* {status === 'loading' && <Loading />} */}
             {status === 'authenticated' && userData && (
                 <div className=" flex flex-col items-center justify-start w-full h-full">
                     {/* <h1>User Profile</h1>

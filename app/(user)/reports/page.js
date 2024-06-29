@@ -7,9 +7,10 @@ import Loading from "../../loading";
 import { Card, Skeleton, Button } from "@nextui-org/react";
 import UnAuthorizeDiv from "../../components/UI/UnAuthorizedDiv";
 import MustLogin from "../../components/UI/MustLogin";
-
+import useAxiosAuth from "../../../utils/hooks/useAxiosAuth";
 
 const Report = () => {
+    const axiosAuth = useAxiosAuth();
     const router = useRouter();
     const { data: session, status } = useSession();
     const [reports, setReports] = useState([]);
@@ -23,11 +24,12 @@ const Report = () => {
             try {
                 if (status === 'authenticated') {
                     const accessToken = session.user.access;
-                    const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}reports`, {
+                    /* const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}reports`, {
                         headers: {
                             Authorization: `JWT ${accessToken}`,
                         },
-                    });
+                    }); */
+                    const response = await axiosAuth.get(`reports`)
                     setReports(response.data);
                 }
             } catch (error) {

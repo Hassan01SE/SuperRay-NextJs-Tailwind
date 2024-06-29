@@ -25,7 +25,22 @@ const handler = NextAuth({
                     const user = response.data;
                     if (user) return user;
                 } catch (error) {
-                    console.error(error);
+                    if (error.response) {
+                        // Server responded with a status other than 200 range
+                        if (error.response.data.detail) {
+                            // Specific error message from backend
+                            throw new Error(error.response.data.detail);
+                        } else {
+                            // General server error
+                            throw new Error("Server error, please try again later.");
+                        }
+                    } else if (error.request) {
+                        // No response from server
+                        throw new Error("No response from server, please check your network.");
+                    } else {
+                        // Other errors
+                        throw new Error("An error occurred, please try again.");
+                    }
                 }
                 return null;
             },

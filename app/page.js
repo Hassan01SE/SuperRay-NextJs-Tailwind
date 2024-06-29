@@ -1,7 +1,9 @@
-
+import Image from "next/image";
 import bannerimage from '../public/radiologyai.jpg';
 import Link from 'next/link';
-
+import airadio from '../public/airadio.gif'
+import fracturedetectimg from '../public/fracturedetectimg.png'
+import ganpic from '../public/ganpic.png'
 
 
 export default function Home() {
@@ -37,7 +39,7 @@ export default function Home() {
         </div>
 
         <div className="w-full flex flex-col items-center sm:w-1/2">
-          <img className='w-[300px] h-[300px] lg:w-[400px] lg:h-[400px] xl:w-[450px] xl:h-[450px] rounded-md' src="https://d2c0db5b8fb27c1c9887-9b32efc83a6b298bb22e7a1df0837426.ssl.cf2.rackcdn.com/19039197-cervical-acdf-736x833.gif" alt='ai radiology banner pic' />
+          <Image className='w-[300px] h-[300px] lg:w-[400px] lg:h-[400px] xl:w-[450px] xl:h-[450px] rounded-md' src={airadio} alt='ai radiology banner pic' />
         </div>
       </div>
 
@@ -46,7 +48,7 @@ export default function Home() {
       <section id='fracture-section' className='flex flex-col items-center justify-start w-full mt-2 h-[700px] p-4  border-b-2 border-b-white dark:border-none sm:py-12 sm:flex-row sm:items-start sm:justify-start sm:h-unit-10xl lg:h-unit-9xl '>{/*  lg:h-unit-8xl */}
 
         <div className="w-full flex flex-col mt-4   items-center sm:mt-0 sm:w-1/2 sm:mr-5 lg:mr-5 lg:w-[60%]">
-          <img className='w-[300px] h-[300px] lg:w-[400px] lg:h-[400px] xl:w-[450px] xl:h-[450px] rounded-md' src="https://www.researchgate.net/publication/344302396/figure/fig2/AS:1020769014398985@1620381706746/Fracture-detection-using-artificial-intelligence-on-plain-frontal-wrist-radiographs.jpg" alt='fracture ai' />
+          <Image className='w-[300px] h-[300px] lg:w-[400px] lg:h-[400px] xl:w-[450px] xl:h-[450px] rounded-md' src={fracturedetectimg} alt='fracture ai' />
         </div>
 
         <div className='w-full flex flex-col items-center  sm:w-1/2  lg:w-3/4 justify-evenly sm:items-start max-h-full'>
@@ -79,7 +81,7 @@ export default function Home() {
         </div>
 
         <div className="w-full flex flex-col items-center mt-5 sm:mt-0 sm:w-1/2  lg:w-[60%]">
-          <img className='w-[300px] h-[300px] lg:w-[400px] lg:h-[400px] xl:w-[450px] xl:h-[450px] rounded-md' src="https://www.mdpi.com/engproc/engproc-31-00084/article_deploy/html/images/engproc-31-00084-g001.png" alt='xray gan' />
+          <Image className='w-[300px] h-[300px] lg:w-[400px] lg:h-[400px] xl:w-[450px] xl:h-[450px] rounded-md' src={ganpic} alt='xray gan' />
         </div>
 
       </section>

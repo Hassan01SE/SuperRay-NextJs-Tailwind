@@ -1,4 +1,5 @@
 'use client'
+import { Image } from "@nextui-org/react";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useSession, status } from "next-auth/react";
@@ -8,6 +9,7 @@ import { Card, Skeleton, Button } from "@nextui-org/react";
 import UnAuthorizeDiv from "../../components/UI/UnAuthorizedDiv";
 import MustLogin from "../../components/UI/MustLogin";
 import useAxiosAuth from "../../../utils/hooks/useAxiosAuth";
+
 
 const Report = () => {
     const axiosAuth = useAxiosAuth();
@@ -91,7 +93,7 @@ const Report = () => {
                         {currentReports.map((report) => (
                             <div key={report.id} className="mt-4 flex flex-row justify-between items-center bg-gray-800 dark:bg-white max-w-xl rounded-xl border dark:border-gray-700 border-gray-200 px-6 py-4 shadow-lg transition duration-300 ease-in-out transform hover:shadow-2xl">
                                 <div className="relative overflow-hidden rounded-lg w-1/4">
-                                    <img src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${report.image}`} alt="report img" className="mb-2 w-full h-32 rounded-lg hover:scale-105 hover:cursor-pointer transition duration-300 ease-in-out" />
+                                    <Image removeWrapper isBlurred src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${report.image}`} alt="report img" className="mb-2 w-full h-32 rounded-lg hover:scale-105 hover:cursor-pointer transition duration-300 ease-in-out" />
                                 </div>
                                 <div className="w-[60%] ml-4">
                                     <h2 className="mb-2 text-xl font-semibold tracking-tight dark:text-gray-900 text-white">Medical Report #{report.id}</h2>

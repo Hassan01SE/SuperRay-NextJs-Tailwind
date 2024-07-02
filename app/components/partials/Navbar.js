@@ -28,7 +28,7 @@ export const Navbar = () => {
     const [username, setUser] = useState();
     const [name, setName] = useState();
     const [email, setEmail] = useState();
-
+    const [pic, setPic] = useState(null);
 
     const [nav, setNav] = useState(false);
     const [islogged, setlogin] = useState();
@@ -37,12 +37,23 @@ export const Navbar = () => {
 
     useEffect(() => {
         if (session) {
-            let token = session.user.access;
-            console.log(token);
-            const { username, first_name, email } = jwtDecode(token);
-            setName(first_name);
-            setUser(username);
-            setEmail(email);
+            if (session.user.info) {
+                let token = session.user.info.access;
+                setName(session.user.name);
+                setEmail(session.user.email);
+                setPic(session.user.picture);
+                setUser(session.user.info.user.username);
+            }
+            else {
+                let token = session?.user.access;
+                console.log(token);
+                if (token) {
+                    const { username, first_name, email } = jwtDecode(token);
+                    setName(first_name);
+                    setUser(username);
+                    setEmail(email);
+                }
+            }
             setlogin(true);
         }
         else {

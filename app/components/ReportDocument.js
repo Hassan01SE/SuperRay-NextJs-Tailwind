@@ -83,7 +83,7 @@ const ReportDocument = ({ report, createdTime, createdDate }) => (
                 </View>
                 <View style={styles.diagnosis}>
                     <Text style={styles.titlehead}>Diagnoses by SuperRay</Text>
-                    <Text style={styles.findings}><Text style={{ fontWeight: 'bold', fontSize: 18 }}>Findings:</Text> <Text>{report.diagnose}</Text> </Text>
+                    <Text style={styles.findings}><Text style={{ fontWeight: 'bold', fontSize: 16 }}>Findings:</Text> <Text>{report.diagnose}</Text> </Text>
                 </View>
             </View>
             <Text style={styles.footer}><Text style={{ fontWeight: 'bold' }}>Report created on: </Text>{createdTime}, {createdDate}</Text>

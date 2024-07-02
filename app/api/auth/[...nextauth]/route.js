@@ -1,6 +1,9 @@
 import NextAuth from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials";
+import GoogleProvider from "next-auth/providers/google";
 import axios from "axios";
+
+
 
 const handler = NextAuth({
     providers: [
@@ -44,19 +47,62 @@ const handler = NextAuth({
                 }
                 return null;
             },
-        })
+        }),
+        GoogleProvider({
+            clientId: process.env.GOOGLE_CLIENT_ID,
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+            authorization: {
+                params: {
+                    prompt: "consent",
+                    access_type: "offline",
+                    response_type: "code"
+                }
+            },
+
+        }),
     ],
     pages: { signIn: "/login" }
     ,
     callbacks: {
-        async jwt({ token, user }) {
+        async signIn({ user, account, profile }) {
+            if (account.provider === "google") {
+                try {
+                    const response = await axios.post(`${process.env.BACKEND_URL}google/`, {
+                        access_token: account.id_token,
+                    });
+
+                    // Save the backend response in the `account` object for later use in `jwt` callback
+                    account.backendResponse = response.data;
+                    //console.log(response.data);
+
+                    if (response.data) {
+                        return true;
+                    }
+                } catch (error) {
+                    console.error("Error in Google sign-in handler:", error);
+                    return false;
+                }
+            }
+            return true;
+        },
+        async jwt({ token, user, account }) {
             if (user) {
                 token = { ...token, ...user };
+            }
+            // If the account provider is Google, include additional info
+            if (account?.provider === "google" && account.backendResponse) {
+                const info = account.backendResponse;
+                token = { ...token, info };
+
+
             }
             return token;
         },
         async session({ session, token }) {
             session.user = token;
+            if (session.user.info) {
+                session.user.access = session.user.info.access;
+            }
             return session;
         },
     },

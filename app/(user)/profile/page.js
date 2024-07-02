@@ -23,6 +23,19 @@ const Profile = () => {
     const router = useRouter();
     const { data: session, status } = useSession();
 
+    const gender = (sex) => {
+        if (sex === "M") {
+            return "Male";
+        }
+        else if (sex === "F") {
+            return "Female";
+        }
+        else if (sex === "O") {
+            return "Other";
+        }
+        else { return null; }
+    }
+
     useEffect(() => {
         const fetchProfile = async () => {
             try {
@@ -92,8 +105,8 @@ const Profile = () => {
                             <p className="text-md mt-4 text-slate-300 dark:text-slate-600 "> <span className="font-bold"> Account created on:</span> {joinedDate} </p>
                             <p className="text-md mt-4 text-slate-300 dark:text-slate-600 "> <span className="font-bold"> User Name:</span> {userData.username} </p>
                             <p className="text-md mt-2 text-slate-300 dark:text-slate-600 "> <span className="font-bold"> Email Address:</span> {userData.email} </p>
-                            <p className="text-md mt-2 text-slate-300 dark:text-slate-600 "> <span className="font-bold"> Phone Number:</span> {userData.phone_number} </p>
-                            <p className="text-md mt-2 text-slate-300 dark:text-slate-600 "> <span className="font-bold"> Gender:</span> {userData.sex === 'M' && "Male"} </p>
+                            <p className="text-md mt-2 text-slate-300 dark:text-slate-600 "> <span className="font-bold"> Phone Number:</span> {userData.phone_number || "Not Provided"} </p>
+                            <p className="text-md mt-2 text-slate-300 dark:text-slate-600 "> <span className="font-bold"> Gender:</span> {gender(userData.sex) || "Not Specified"} </p>
 
                             <p className="text-md mt-2 text-slate-300 dark:text-slate-600 "> <span className="font-bold"> Total reports generated:</span> <Link href='/reports' className="underline font-semibold" > {userData.reports.length}</Link> </p>
                         </div>

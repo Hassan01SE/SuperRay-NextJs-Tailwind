@@ -102,6 +102,7 @@ const handler = NextAuth({
             session.user = token;
             if (session.user.info) {
                 session.user.access = session.user.info.access;
+                session.user.refresh = session.user.info.refresh;
             }
             return session;
         },

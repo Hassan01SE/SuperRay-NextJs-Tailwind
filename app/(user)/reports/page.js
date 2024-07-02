@@ -21,6 +21,22 @@ const Report = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const reportsPerPage = 5;
 
+    const setDateCreated = (date) => {
+        const dateCreated = new Date(date);
+        const formattedDate = `${dateCreated.toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+        })}`;
+        const formattedTime = `${dateCreated.toLocaleTimeString("en-US", {
+            hour: "numeric",
+            minute: "numeric",
+            hour12: true,
+        })}`;
+
+        return formattedDate + " " + formattedTime;
+    }
+
     useEffect(() => {
         const fetchReports = async () => {
             try {
@@ -96,8 +112,9 @@ const Report = () => {
                                     <Image removeWrapper isBlurred src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${report.image}`} alt="report img" className="mb-2 w-full h-32 rounded-lg hover:scale-105 hover:cursor-pointer transition duration-300 ease-in-out" />
                                 </div>
                                 <div className="w-[60%] ml-4">
-                                    <h2 className="mb-2 text-xl font-semibold tracking-tight dark:text-gray-900 text-white">Medical Report #{report.id}</h2>
-                                    <div className="flex flex-col items-start">
+                                    <div className="flex flex-col md:flex-row md:justify-between">
+                                        <h2 className="mb-2 text-xl font-semibold tracking-tight dark:text-gray-900 text-white">Medical Report #{report.id} </h2> <span className="text-xs text-slate-500">{setDateCreated(report.date)}</span> </div>
+                                    <div className="flex flex-col items-start mt-1 md:mt-0">
                                         <p className="mb-3 dark:text-gray-600 text-gray-300">{report.domain}</p>
                                         <button onClick={() => handleReportView(report.id)} className="font-medium bg-gradient-to-r from-[#F4A261] to-[#E76F51] hover:from-[#E76F51] hover:to-[#F4A261] text-white rounded-lg w-1/2 h-10 sm:w-3/5 sm:h-10 md:text-lg focus:outline-none transition duration-300 ease-in-out">View</button>
                                     </div>

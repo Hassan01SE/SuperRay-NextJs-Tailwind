@@ -43,7 +43,6 @@ const Register = () => {
         password2: "",
         phone_number: "",
         sex: "",
-        user_type: "STANDARD_USER",
         first_name: "",
         last_name: ""
     };

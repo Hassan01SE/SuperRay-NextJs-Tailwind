@@ -73,6 +73,12 @@ const ChatBox = ({ closeChat, report }) => {
         }
     };
 
+    const handleKeyPress = (e) => {
+        if (e.key === 'Enter') {
+            handleSend();
+        }
+    };
+
     return (
         <div className="fixed bottom-24 right-6 w-80 h-96  bg-gray-800 rounded-lg shadow-lg p-4 flex flex-col">
             <div className="flex justify-between items-center pb-2 border-b border-gray-700">
@@ -100,6 +106,7 @@ const ChatBox = ({ closeChat, report }) => {
                     type="text"
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
+                    onKeyDown={handleKeyPress}
                     className="w-full p-2 bg-gray-900 border border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-orange-500"
                     placeholder="Type your query..."
                 />

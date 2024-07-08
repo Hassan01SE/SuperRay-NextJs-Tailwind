@@ -16,11 +16,6 @@ const Register = () => {
                     </div>
                 </div>
 
-                {/*  <div className=" w-3/5 h-full bg-[url('https://media.licdn.com/dms/image/D4E12AQFVKAFtNnNlEg/article-cover_image-shrink_720_1280/0/1689142758028?e=2147483647&v=beta&t=MoznUEKtoYt9xhitLn0-eHSgKylS0Hxbh1xs-jFy81k')] bg-auto lg:bg-cover bg-no-repeat rounded-md"    >
-
-
-                </div> */}
-
                 <img className="w-1/2 ml-2 h-full max-h-[750px] rounded-md" src="https://media.licdn.com/dms/image/D4E12AQFVKAFtNnNlEg/article-cover_image-shrink_720_1280/0/1689142758028?e=2147483647&v=beta&t=MoznUEKtoYt9xhitLn0-eHSgKylS0Hxbh1xs-jFy81k" alt="ai radio" />
 
             </div>

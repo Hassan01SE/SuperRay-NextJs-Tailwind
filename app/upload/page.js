@@ -173,7 +173,7 @@ const Upload = () => {
                     {(onClose) => (
                         <div className="flex flex-col items-center dark:bg-black bg-[#000210]">
                             <ModalHeader className="flex text-3xl flex-col gap-1">Medical Report</ModalHeader>
-                            <Image className="mt-2 self-center mb-2 w-[300px] md:w[450px]" width={300} height={300} src={`data:image/jpeg;base64,${generatedImage}`} alt="medical img" />
+                            <Image className="mt-2 self-center mb-2 w-[300px] max-h-80 md:max-h-[460px] md:w[450px]" width={300} height={300} src={`data:image/jpeg;base64,${generatedImage}`} alt="medical img" />
                             <ModalBody >
                                 <p className=" overflow-y-hidden max-h-24">
                                     <span className="font-bold">AI Diagnose:</span> {diagnoseReport} ..

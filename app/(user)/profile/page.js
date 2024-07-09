@@ -117,7 +117,7 @@ const Profile = () => {
 
                 </div>
             )}
-            {status === 'authenticated' && !userData && !error && <p>Loading user data...</p>}
+            {status === 'authenticated' && !userData && !error && <p className="mt-4">Loading user data...</p>}
             {status === 'unauthenticated' && <MustLogin />}
             {error && <UnAuthorizeDiv error={error} />}
         </div>

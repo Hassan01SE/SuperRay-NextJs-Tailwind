@@ -5,7 +5,7 @@ const Register = () => {
     return (
         <div className="w-full flex flex-col justify-start items-center min-h-screen   mt-20 p-4 ">
 
-            <div id='desktop' className="hidden xl:flex  md:flex-row min-h-screen xl:h-[710px] xl:max-h-[750px]   w-[95%]  outline-slate-200 outline-1 outline-double  bg-[#070F2B] dark:outline-none  dark:bg-blue-950 mx-auto my-auto rounded-md items-start justify-evenly  ">
+            <div id='desktop' className="hidden xl:flex  md:flex-row min-h-screen xl:h-[710px] max-h-[750px]   w-[95%]  outline-slate-200 outline-1 outline-double  bg-[#070F2B] dark:outline-none  dark:bg-blue-950 mx-auto my-auto rounded-md items-start justify-evenly  ">
 
                 <div className="w-1/2 h-full flex flex-col justify-start mr-2 md:pl-10">
                     <h1 className="text-3xl font-semibold mt-2 lg:text-4xl"> Sign up</h1>

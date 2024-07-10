@@ -80,7 +80,7 @@ const ChatBox = ({ closeChat, report }) => {
     };
 
     return (
-        <div className="fixed bottom-24 right-6 w-80 h-96  bg-gray-800 rounded-lg shadow-lg p-4 flex flex-col">
+        <div className="fixed bottom-24 right-6 w-80 h-96 xl:h-[26rem] xl:w-90  bg-gray-800 rounded-lg shadow-lg p-4 flex flex-col">
             <div className="flex justify-between items-center pb-2 border-b border-gray-700">
                 <h2 className="text-lg text-white">AI Radiologist Assistant</h2>
                 <button onClick={closeChat} className="text-white"><FaTimes /></button>
